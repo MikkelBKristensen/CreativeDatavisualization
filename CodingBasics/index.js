@@ -1,14 +1,23 @@
-// import all 38 d3 modules
-import * as d3 from 'd3';
+const h = 500;
+const w = 500;
 
-// Alternative: import only the select and selectAll modules
-// import { select, selectAll } from "d3";
+var canvas = d3
+  .select("#myVis")
+  .append("svg")
+  .attr("width", w)
+  .attr("height", h)
+  .style("background-color", "grey");
 
-const redCircle = d3.select('red-circle');
-redCircle.style('fill', 'green');
-d3.selectAll('div');
+function createCircle(h, w, r, canvas, color) {
+  canvas
+    .append("circle")
+    .attr("cx", w / 2)
+    .attr("cy", h / 2)
+    .attr("r", r)
+    .attr("fill", color);
+}
 
-// how does this code take effect in the html file?
-// <svg>
-//     <circle id="red-circle" cx="50" cy="50" r="20" fill="red"></circle>
-// </svg>
+createCircle(500, 500, 34, canvas, "purple");
+createCircle(500, 550, 27, canvas, "yellow");
+createCircle(500, 600, 18, canvas, "green");
+createCircle(500, 630, 11, canvas, "red");
