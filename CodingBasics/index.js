@@ -6,7 +6,7 @@ var canvas = d3
   .append("svg")
   .attr("width", w)
   .attr("height", h)
-  .style("background-color", "");
+  .style("background-color", "#F0EAD6");
 
 function createCircle(h, w, r, canvas, color) {
   canvas
