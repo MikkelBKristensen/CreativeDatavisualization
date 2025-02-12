@@ -4,7 +4,6 @@ d3.csv("data.csv").then((data) => {
   const innerRadius = 100;
   const outerRadius = 250;
 
-  
   const windScale = {
     NA: 0,
     "Let-": 1,
@@ -19,8 +18,6 @@ d3.csv("data.csv").then((data) => {
     d.timestamp = +d.timestamp; // Converts the string to number
     d.wind = windScale[d.wind]; // Converts category to number
   });
-
-  
 
   const svg = d3
     .select("#canvas")
