@@ -82,10 +82,10 @@ d3.csv("data.csv").then((data) => {
       .text(d => d.timestamp));
 
   // Add radial y-axis
+  const yTicks = y.ticks(5).slice(1);
+
   const yAxis = svg.append("g")
     .attr("text-anchor", "middle");
-
-  const yTicks = y.ticks(5).slice(1);
 
   yAxis.selectAll("circle")
     .data(yTicks)
@@ -106,4 +106,12 @@ d3.csv("data.csv").then((data) => {
     .clone(true)
     .attr("fill", "#000")
     .attr("stroke", "none");
+
+  // Add label for y-axis
+  yAxis.append("text")
+    .attr("y", -outerRadius - 20)
+    .attr("dy", "-0.5em")
+    .attr("text-anchor", "middle")
+    .attr("fill", "#000")
+    .text("Wind Strength");
 });
