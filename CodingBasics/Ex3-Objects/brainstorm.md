@@ -1,6 +1,16 @@
-# Brainstorming
+# Visualisation Notes
 
-## Søjlediagram
+## Data Types
+
+Timestamp : Quantitative Discrete
+
+Color : Quanititative Continous
+
+Wind : Qualitative Ordinal
+
+## Visualisation Ideas
+
+### Søjlediagram
 
 x-axis = timestamps
 
@@ -8,7 +18,7 @@ y-axis = vindstyrke
 
 søjlefarve = himmelfarve
 
-## Cirkel
+### Cirkel
 
 *(Radius = Mængde sol (varierende))*
 
