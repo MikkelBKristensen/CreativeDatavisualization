@@ -88,12 +88,12 @@ var data = [
 
 var margin = { top: 10, right: 10, bottom: 10, left: 10 },
   width = 800 - margin.left - margin.right,
-  height = 460 - margin.top - margin.bottom,
+  height = 600 - margin.top - margin.bottom,
   innerRadius = 80,
   outerRadius = Math.min(width, height) / 2;   // the outerRadius goes from the middle of the SVG area to the border
 
 let smells = new Set(data.map(d => d.smell))
-let qualities = new Set(data.map(d => d.smell))
+let qualities = new Set(data.map(d => d.air_quality))
 
 
 // append the svg object to the canvas div
@@ -164,9 +164,9 @@ const legend = svg.append("g")
 
 // Background for the legend
 legend.append("rect")
-  .attr("x", -300)
-  .attr("y", 0)
-  .attr("width", 600)
+  .attr("x", -340)
+  .attr("y", -10)
+  .attr("width", 700)
   .attr("height", 110)
   .attr("fill", "#f5f5f5")
   .attr("rx", 10)
@@ -177,7 +177,7 @@ legend.append("rect")
 
 // Smell color legend (circles)
 const smellLegend = legend.append("g")
-  .attr("transform", "translate(-250, 45)");
+  .attr("transform", "translate(-300, 30)");
 
 smellLegend.append("text")
   .attr("x", 0)
@@ -201,7 +201,7 @@ Array.from(smells).forEach((smell, i) => {
 
 // Air quality legend (rectangles)
 const qualityLegend = legend.append("g")
-  .attr("transform", "translate(-250, 75)");
+  .attr("transform", "translate(-300, 80)");
 
 qualityLegend.append("text")
   .attr("x", 0)
@@ -212,21 +212,21 @@ qualityLegend.append("text")
 // Create air quality swatches
 Array.from(qualities).forEach((quality, i) => {
   qualityLegend.append("rect")
-    .attr("x", 60 + i * 80)
+    .attr("x", 90 + i * 80)
     .attr("y", -9)
     .attr("width", 6)
     .attr("height", 12)
     .attr("fill", qualityColor(quality));
 
   qualityLegend.append("text")
-    .attr("x", 75 + i * 80)
+    .attr("x", 100 + i * 80)
     .attr("y", 0)
     .text(quality);
 });
 
 // Wind speed legend
 const windLegend = legend.append("g")
-  .attr("transform", "translate(50, 45)");
+  .attr("transform", "translate(30, 30)");
 
 windLegend.append("text")
   .attr("x", 0)
@@ -237,7 +237,7 @@ windLegend.append("text")
 // Create example rectangles for wind
 [10, 20, 30].forEach((speed, i) => {
   windLegend.append("rect")
-    .attr("x", 80 + i * 70)
+    .attr("x", 100 + i * 70)
     .attr("y", -heightScale(speed) / 2)
     .attr("width", 6)
     .attr("height", heightScale(speed))
@@ -251,7 +251,7 @@ windLegend.append("text")
 
 // Feeling legend (rotation)
 const feelingLegend = legend.append("g")
-  .attr("transform", "translate(50, 75)");
+  .attr("transform", "translate(30, 80)");
 
 feelingLegend.append("text")
   .attr("x", 0)
@@ -284,4 +284,4 @@ const rotRect = feelingLegend.append("rect")
 feelingLegend.append("text")
   .attr("x", 165)
   .attr("y", 0)
-  .text("Very Cold"); 
+  .text("Very Cold");
