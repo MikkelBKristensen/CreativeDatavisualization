@@ -3,6 +3,7 @@ d3.csv("data.csv").then((data) => {
   const height = width;
   const innerRadius = 120;
   const outerRadius = 355;
+  const padding = 0.2;
 
   const windScale = {
     "NA": 0,
@@ -38,6 +39,7 @@ d3.csv("data.csv").then((data) => {
   const x = d3
     .scaleBand()
     .domain(data.map((d) => d.timestamp)) // Uses timestamps as category
+    //.paddingInner(padding)
     .range([0, 2 * Math.PI]) // Full circle
     .align(0);
 
@@ -49,7 +51,7 @@ d3.csv("data.csv").then((data) => {
     .outerRadius((d) => y(d.wind))
     .startAngle((d) => x(d.timestamp))
     .endAngle((d) => x(d.timestamp) + x.bandwidth())
-    .padAngle(0.02);
+    .padAngle(0);
 
   svg
     .append("g")

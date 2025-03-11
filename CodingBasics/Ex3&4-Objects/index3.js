@@ -28,8 +28,8 @@ d3.csv("data.csv").then((data) => {
 
     // y-axis scale
     const y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => windScale[d.wind])])
-        .nice()
+        .domain([0, d3.max(data, d => windScale[d.wind]) + 0.5])
+        //.nice()
         .range([height, 0]);
 
     // Add x-axis grid lines
