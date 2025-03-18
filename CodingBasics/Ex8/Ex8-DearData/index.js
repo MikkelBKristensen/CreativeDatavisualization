@@ -7,7 +7,7 @@ d3.csv("data.csv").then((data) => {
     
     const height = 600;
     const width = 800;
-    const margin = { top: 20, right: 30, bottom: 40, left: 40 };
+    const margin = { top: 80, right: 30, bottom: 40, left: 40 }; // Increased top margin for header
 
     const scaleConst = 5;
 
@@ -41,6 +41,28 @@ d3.csv("data.csv").then((data) => {
         .style("background-color", "#fff9e8")
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
+    
+    // Add letter-like header background
+    svg.append("rect")
+        .attr("x", width/2 - 100)
+        .attr("y", -60)
+        .attr("width", 200)
+        .attr("height", 40)
+        .attr("fill", "#f8f8f8")
+        .attr("stroke", "#333")
+        .attr("stroke-width", 1)
+        .attr("rx", 5)
+        .attr("ry", 5);
+    
+    // Add the letter-like header text
+    svg.append("text")
+        .attr("x", width/2)
+        .attr("y", height/2-margin.top)
+        .attr("font-family", "Brush Script MT, cursive")
+        .attr("font-size", "48px")
+        .attr("fill", "#333")
+        .attr("text-anchor", "middle")
+        .text("Dear Data,");
 
     // x-axis scale
     const x = d3.scaleLinear()
@@ -57,9 +79,10 @@ d3.csv("data.csv").then((data) => {
     const numRows = Math.ceil(data.length / 10);
     
     // Create a group for each data point - fix the ordering issue
-    const points = svg.selectAll("g")
+    const points = svg.selectAll("g.datapoint")
         .data(data)
         .join("g")
+        .attr("class", "datapoint")
         .attr("transform", (d, i) => {
             // Calculate row and column (fixed order - top row is first)
             const row = Math.floor(i / 10);
