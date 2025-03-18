@@ -1,4 +1,10 @@
 d3.csv("data.csv").then((data) => {
+    // Convert string "true"/"false" to actual boolean values
+    data.forEach(d => {
+        d.solo = d.solo === "true"; // This converts "true" to true and anything else to false
+        d.hours = +d.hours; // Also convert hours to a number
+    });
+    
     const height = 600;
     const width = 800;
     const margin = { top: 20, right: 30, bottom: 40, left: 40 };
@@ -47,11 +53,19 @@ d3.csv("data.csv").then((data) => {
         .nice()
         .range([height, 0]);
 
-    // Create a group for each data point
+    // Get the number of rows needed
+    const numRows = Math.ceil(data.length / 10);
+    
+    // Create a group for each data point - fix the ordering issue
     const points = svg.selectAll("g")
         .data(data)
         .join("g")
-        .attr("transform", (d, i) => `translate(${x(i % 10)}, ${y(4- Math.floor(i / 10))})`);
+        .attr("transform", (d, i) => {
+            // Calculate row and column (fixed order - top row is first)
+            const row = Math.floor(i / 10);
+            const col = i % 10;
+            return `translate(${x(col)}, ${y(numRows - 1 - row)})`;
+        });
 
     // Add the appropriate shape to each group
     points.each(function(d) {
@@ -63,5 +77,15 @@ d3.csv("data.csv").then((data) => {
             .append("path")
             .attr("d", shape)
             .attr("fill", colormap[d.howGood]);
+            
+        // Add a small dot indicator if solo is true
+        if (d.solo) {
+            d3.select(this)
+                .append("circle")
+                .attr("cx", calcSize(d.hours, d.solo) + 8) // Position to the right
+                .attr("cy", -10)
+                .attr("r", 3) // Small fixed size
+                .attr("fill", "#000"); // Black dot
+        }
     });
 });
