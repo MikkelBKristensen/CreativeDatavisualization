@@ -80,7 +80,7 @@ d3.csv("data/data.csv").then((data) => {
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         .style("fill", "#ffffff")
-        .text("Value");
+        .text("CO2 Emissions (in 1000 Tonnes)");
 
     // 5. Create a group for the towers and bars
     const towerGroup = g.append("g")
@@ -183,7 +183,7 @@ d3.csv("data/data.csv").then((data) => {
         towerGroup.selectAll("*").remove();
         
         // Create cooling towers
-        const towerHeight = 80; // Height of cooling tower in pixels
+        const towerHeight = 70; // Height of cooling tower in pixels
         const towerWidth = xScale.bandwidth();
         
         // Draw towers and bubbles for each branch
@@ -212,17 +212,17 @@ d3.csv("data/data.csv").then((data) => {
                 .attr("stroke-width", 1);
             
             // Create value bar background (optional, for better visibility)
-            tower.append("rect")
-                .attr("x", branchX)
-                .attr("y", yScale(d.Value))
-                .attr("width", towerWidth)
-                .attr("height", valueHeight - towerHeight)
-                .attr("fill", "rgba(100, 100, 200, 0.1)")
-                .attr("stroke", "rgba(100, 100, 200, 0.3)")
-                .attr("stroke-width", 1);
+            // tower.append("rect")
+            //     .attr("x", branchX)
+            //     .attr("y", yScale(d.Value))
+            //     .attr("width", towerWidth)
+            //     .attr("height", valueHeight - towerHeight)
+            //     .attr("fill", "rgba(100, 100, 200, 0.1)")
+            //     .attr("stroke", "rgba(100, 100, 200, 0.3)")
+            //     .attr("stroke-width", 1);
             
             // Create smoke bubbles
-            const numBubbles = Math.max(5, Math.ceil(d.Value / 1000));
+            const numBubbles = Math.max(5, Math.ceil(d.Value / 1800));
             createBubbles(tower, branchX, towerWidth, valueHeight, numBubbles);
             
             // Add value label
