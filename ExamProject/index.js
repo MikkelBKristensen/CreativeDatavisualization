@@ -1,252 +1,378 @@
-// Load the data and create the visualization
-d3.csv("data/data.csv").then((data) => {
-    // 1. Process the data
-    // Parse numeric values
-    data.forEach(d => {
-        d.Value = +d.Value; // Convert Value to number
-        d.Year = d.Year.toString(); // Ensure Year is a string
-    });
+// CO2 Emissions Visualization using D3.js
+// Optimized and Simplified Version
 
-    // Extract unique brancher names and years
-    const brancher = Array.from(new Set(data.map(d => d.Brancher)));
-    const years = Array.from(new Set(data.map(d => d.Year))).sort();
-    console.log("Unique Brancher:", brancher);
-    console.log("Years:", years);
-
-    // Set initial year
-    let currentYear = years[0];
-
-    // 2. Setup SVG canvas
-    const height = 900;
-    const width = 1500;
-    const margin = { top: 50, right: 50, bottom: 100, left: 80 };
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
-
-    const svg = d3.select("#canvas")
-                .append("svg")
-                .attr("width", width)
-                .attr("height", height)
-                .style("background-color", "#1f1f1f");
-
-    // Add a title
-    svg.append("text")
-        .attr("x", width / 2)
-        .attr("y", margin.top / 2)
-        .attr("text-anchor", "middle")
-        .style("font-size", "24px")
-        .style("fill", "#ffffff")
-        .text("Green Initiatives, in Tonnes of CO2");
-
-    // Add a group for the main visualization
-    const g = svg.append("g")
-                .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-    // 3. Create scales
-    // 3.1 Create xScale for brancher
-    const xScale = d3.scaleBand()
-        .domain(brancher)
-        .range([0, innerWidth])
-        .padding(0.5);
-
-    // 3.2 Create yScale for values
-    const yScale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.Value) * 1.2]) // Add 20% headroom
-        .range([innerHeight, 0]);
-
-    // 4. Create axes
-    // 4.1 Create xAxis
-    const xAxis = g.append("g")
-        .attr("transform", `translate(0, ${innerHeight})`)
-        .call(d3.axisBottom(xScale))
-        .style("color", "#cccccc");
-
-    // Style x-axis text
-    xAxis.selectAll("text")
-        .style("text-anchor", "middle")
-        .style("font-size", "14px")
-        .style("fill", "#ffffff");
-
-    // 4.2 Create yAxis
-    const yAxis = g.append("g")
-        .call(d3.axisLeft(yScale))
-        .style("color", "#cccccc");
-
+// Main visualization function - better encapsulation
+function createCO2EmissionsViz(containerId) {
+    // Configuration object for easy customization
+    const config = {
+      width: 1200,
+      height: 800,
+      margin: { top: 50, right: 50, bottom: 100, left: 80 },
+      backgroundColor: "#1f1f1f",
+      textColor: "#ffffff",
+      towerColor: "#555",
+      towerStroke: "#333",
+      animate: true,
+      animationDuration: 500
+    };
+  
+    // Calculate inner dimensions
+    const innerWidth = config.width - config.margin.left - config.margin.right;
+    const innerHeight = config.height - config.margin.top - config.margin.bottom;
+  
+    // Select the container
+    const container = d3.select(containerId);
+  
+    // Create SVG
+    const svg = container
+      .append("svg")
+      .attr("width", config.width)
+      .attr("height", config.height)
+      .style("background-color", config.backgroundColor)
+      .style("display", "block")
+      .style("margin", "0 auto");
+  
+    // Add chart title
+    const title = svg.append("text")
+      .attr("x", config.width / 2)
+      .attr("y", config.margin.top / 2)
+      .attr("text-anchor", "middle")
+      .style("font-size", "24px")
+      .style("fill", config.textColor)
+      .text("Green Initiatives, in Tonnes of CO2");
+  
+    // Add main visualization group
+    const chart = svg.append("g")
+      .attr("transform", `translate(${config.margin.left}, ${config.margin.top})`);
+  
+    // Add tooltip for interactivity
+    const tooltip = container.append("div")
+      .attr("class", "tooltip")
+      .style("position", "absolute")
+      .style("visibility", "hidden")
+      .style("background-color", "rgba(0, 0, 0, 0.8)")
+      .style("color", "white")
+      .style("padding", "10px")
+      .style("border-radius", "5px")
+      .style("pointer-events", "none")
+      .style("font-size", "14px");
+      
+    // State management
+    let data = [];
+    let years = [];
+    let companies = [];
+    let currentYearIndex = 0;
+    let xScale, yScale, xAxis, yAxis;
+    
+    // Add axes groups
+    const xAxisGroup = chart.append("g")
+      .attr("transform", `translate(0, ${innerHeight})`)
+      .style("color", "#cccccc");
+      
+    const yAxisGroup = chart.append("g")
+      .style("color", "#cccccc");
+      
     // Add y-axis label
-    g.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", -60)
-        .attr("x", -innerHeight / 2)
-        .attr("text-anchor", "middle")
-        .style("font-size", "16px")
-        .style("fill", "#ffffff")
-        .text("CO2 Emissions (in 1000 Tonnes)");
-
-    // 5. Create a group for the towers and bars
-    const towerGroup = g.append("g")
-        .attr("class", "towers");
-
-    // 6. Create a slider for years
-    const sliderContainer = d3.select("#canvas")
+    chart.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -60)
+      .attr("x", -innerHeight / 2)
+      .attr("text-anchor", "middle")
+      .style("font-size", "16px")
+      .style("fill", config.textColor)
+      .text("CO2 Emissions (in 1000 Tonnes)");
+      
+    // Tower group
+    const towerGroup = chart.append("g")
+      .attr("class", "towers");
+      
+    // Create Year Slider
+    function createSlider() {
+      const sliderContainer = container
         .append("div")
         .attr("class", "slider-container")
         .style("margin-top", "20px")
         .style("text-align", "center")
         .style("width", "100%");
-
-    sliderContainer.append("p")
-        .style("color", "#ffffff")
+  
+      sliderContainer.append("p")
+        .style("color", config.textColor)
         .style("margin-bottom", "10px")
         .text("Year: ")
         .append("span")
         .attr("id", "year-label")
         .style("font-weight", "bold")
-        .text(currentYear);
-
-    const sliderWidth = width * 0.6;
-    const slider = sliderContainer.append("input")
+        .text(years[currentYearIndex]);
+  
+      const sliderWidth = config.width * 0.6;
+      
+      // Add play button
+      const playButton = sliderContainer.append("button")
+        .text("▶ Play")
+        .style("margin-right", "15px")
+        .style("padding", "5px 10px")
+        .on("click", toggleAnimation);
+        
+      // Add slider
+      const slider = sliderContainer.append("input")
+        .attr("id", "year-slider")
         .attr("type", "range")
         .attr("min", 0)
         .attr("max", years.length - 1)
-        .attr("value", 0)
+        .attr("value", currentYearIndex)
         .attr("step", 1)
         .style("width", `${sliderWidth}px`)
         .on("input", function() {
-            const yearIndex = +this.value;
-            currentYear = years[yearIndex];
-            d3.select("#year-label").text(currentYear);
+          stopAnimation();
+          currentYearIndex = +this.value;
+          updateYearDisplay();
+          updateVisualization();
+        });
+        
+      // Animation state
+      let animationTimer = null;
+      
+      function toggleAnimation() {
+        if (animationTimer) {
+          stopAnimation();
+          playButton.text("▶ Play");
+        } else {
+          playButton.text("⏸ Pause");
+          animationTimer = setInterval(() => {
+            currentYearIndex = (currentYearIndex + 1) % years.length;
+            slider.node().value = currentYearIndex;
+            updateYearDisplay();
             updateVisualization();
-        });
-
-    // Function to create a cooling tower path
-    function createTowerPath(x, width, height) {
-        const baseWidth = width * 0.7;
-        const topWidth = width * 0.5;
-        
-        return `
-            M ${x + (width - baseWidth) / 2}, ${innerHeight}
-            L ${x + (width - topWidth) / 2}, ${innerHeight - height}
-            C ${x + (width - topWidth) / 2 + topWidth * 0.1}, ${innerHeight - height - height * 0.05}
-              ${x + (width - topWidth) / 2 + topWidth * 0.9}, ${innerHeight - height - height * 0.05}
-              ${x + (width - topWidth) / 2 + topWidth}, ${innerHeight - height}
-            L ${x + (width + baseWidth) / 2}, ${innerHeight}
-            Z
-        `;
-    }
-
-    // Function to create bubbles for a tower
-    function createBubbles(selection, x, towerWidth, valueHeight, numBubbles) {
-        const bubbleGroup = selection.append("g")
-            .attr("class", "bubbles");
-        
-        // Calculate bubble positions using a "smoke stack" pattern
-        for (let i = 0; i < numBubbles; i++) {
-            const bubbleY = innerHeight - 80 - (i * (valueHeight) / numBubbles);
-            const randOffset = Math.random() * 8 - 4;
-            const xPos = x + towerWidth / 2 + Math.sin(i * 0.5) * (towerWidth * 0.3) + randOffset;
-            const radius = Math.random() * 6 + 4;
-            
-            bubbleGroup.append("circle")
-                .attr("cx", xPos)
-                .attr("cy", bubbleY)
-                .attr("r", radius)
-                .attr("fill", d3.interpolateBlues(0.3 + Math.random() * 0.5))
-                .attr("opacity", 0.8)
-                .attr("stroke", "#fff")
-                .attr("stroke-width", 0.5);
+          }, 3000);
         }
+      }
+      
+      function stopAnimation() {
+        if (animationTimer) {
+          clearInterval(animationTimer);
+          animationTimer = null;
+        }
+      }
     }
-
-    // Tooltip for data points
-    const tooltip = d3.select("#canvas")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("position", "absolute")
-        .style("visibility", "hidden")
-        .style("background-color", "rgba(0, 0, 0, 0.8)")
-        .style("color", "white")
-        .style("padding", "10px")
-        .style("border-radius", "5px")
-        .style("pointer-events", "none")
-        .style("font-size", "14px");
-
-    // Function to update the visualization based on the current year
+    
+    // Update year display
+    function updateYearDisplay() {
+      d3.select("#year-label").text(years[currentYearIndex]);
+      title.text(`Green Initiatives, in Tonnes of CO2 - ${years[currentYearIndex]}`);
+    }
+  
+    // Tower geometry creation
+    function createTowerPath(x, width, height) {
+      const baseWidth = width * 0.7;
+      const topWidth = width * 0.5;
+      
+      return `
+        M ${x + (width - baseWidth) / 2}, ${innerHeight}
+        L ${x + (width - topWidth) / 2}, ${innerHeight - height}
+        C ${x + (width - topWidth) / 2 + topWidth * 0.1}, ${innerHeight - height - height * 0.05}
+          ${x + (width - topWidth) / 2 + topWidth * 0.9}, ${innerHeight - height - height * 0.05}
+          ${x + (width - topWidth) / 2 + topWidth}, ${innerHeight - height}
+        L ${x + (width + baseWidth) / 2}, ${innerHeight}
+        Z
+      `;
+    }
+  
+    // Create bubbles for a tower
+    function createBubbles(selection, x, towerWidth, valueHeight, numBubbles) {
+      const bubbleGroup = selection.append("g")
+        .attr("class", "bubbles");
+      
+      // Generate bubbles based on CO2 value
+      for (let i = 0; i < numBubbles; i++) {
+        const bubbleY = innerHeight - 80 - (i * (valueHeight) / numBubbles);
+        const randOffset = Math.random() * 8 - 4;
+        const xPos = x + towerWidth / 2 + Math.sin(i * 0.5) * (towerWidth * 0.3) + randOffset;
+        const radius = Math.random() * 6 + 4;
+        
+        bubbleGroup.append("circle")
+          .attr("cx", xPos)
+          .attr("cy", bubbleY)
+          .attr("r", 0) // Start with radius 0 for animation
+          .attr("fill", d3.interpolateBlues(0.3 + Math.random() * 0.5))
+          .attr("opacity", 0.8)
+          .attr("stroke", "#fff")
+          .attr("stroke-width", 0.5)
+          .transition()
+          .duration(config.animationDuration)
+          .attr("r", radius); // Animate to final radius
+      }
+    }
+  
+    // Initialize scales and axes
+    function initializeScalesAndAxes() {
+      // Create x scale for companies
+      xScale = d3.scaleBand()
+        .domain(companies)
+        .range([0, innerWidth])
+        .padding(0.5);
+  
+      // Create y scale for values (with headroom)
+      yScale = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.Value) * 1.2])
+        .range([innerHeight, 0]);
+  
+      // Create axes
+      xAxisGroup.call(d3.axisBottom(xScale))
+        .selectAll("text")
+        .style("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("fill", config.textColor);
+  
+      yAxisGroup.call(d3.axisLeft(yScale));
+    }
+  
+    // Update visualization based on current year
     function updateVisualization() {
-        // Filter data for the current year
-        const currentData = data.filter(d => d.Year === currentYear);
+      // Filter data for the current year
+      const currentData = data.filter(d => d.Year === years[currentYearIndex]);
+      
+      // Update y-scale domain if needed
+      const maxValue = d3.max(currentData, d => d.Value) * 1.2;
+      yScale.domain([0, maxValue]);
+      
+      // Animate y-axis if enabled
+      if (config.animate) {
+        yAxisGroup.transition()
+          .duration(config.animationDuration)
+          .call(d3.axisLeft(yScale));
+      } else {
+        yAxisGroup.call(d3.axisLeft(yScale));
+      }
+      
+      // Clear previous towers and bars
+      towerGroup.selectAll("*").remove();
+      
+      // Create cooling towers
+      const towerHeight = 70; // Height of cooling tower in pixels
+      const towerWidth = xScale.bandwidth();
+      
+      // Draw towers and bubbles for each company
+      currentData.forEach(d => {
+        const companyX = xScale(d.Brancher);
+        const valueHeight = innerHeight - yScale(d.Value);
         
-        // Update y-scale domain if needed
-        yScale.domain([0, d3.max(currentData, d => d.Value) * 1.2]);
-        yAxis.transition().duration(500).call(d3.axisLeft(yScale));
+        // Create tower group
+        const tower = towerGroup.append("g")
+          .attr("class", "tower")
+          .on("mouseover", function(event) {
+            tooltip.style("visibility", "visible")
+              .html(`<strong>${d.Brancher}</strong><br>Year: ${d.Year}<br>Value: ${d.Value.toLocaleString()} tonnes`)
+              .style("left", (event.pageX + 10) + "px")
+              .style("top", (event.pageY - 40) + "px");
+          })
+          .on("mouseout", function() {
+            tooltip.style("visibility", "hidden");
+          });
         
-        // Clear previous towers and bars
-        towerGroup.selectAll("*").remove();
+        // Draw cooling tower silhouette
+        tower.append("path")
+          .attr("d", createTowerPath(companyX, towerWidth, towerHeight))
+          .attr("fill", config.towerColor)
+          .attr("stroke", config.towerStroke)
+          .attr("stroke-width", 1);
         
-        // Create cooling towers
-        const towerHeight = 70; // Height of cooling tower in pixels
-        const towerWidth = xScale.bandwidth();
+        // Create smoke bubbles based on CO2 value
+        const numBubbles = Math.max(5, Math.ceil(d.Value / 1800));
+        createBubbles(tower, companyX, towerWidth, valueHeight, numBubbles);
         
-        // Draw towers and bubbles for each branch
-        currentData.forEach(d => {
-            const branchX = xScale(d.Brancher);
-            const valueHeight = innerHeight - yScale(d.Value);
-            
-            // Create tower group
-            const tower = towerGroup.append("g")
-                .attr("class", "tower")
-                .on("mouseover", function(event) {
-                    tooltip.style("visibility", "visible")
-                        .html(`<strong>${d.Brancher}</strong><br>Year: ${d.Year}<br>Value: ${d.Value}`)
-                        .style("left", (event.pageX + 10) + "px")
-                        .style("top", (event.pageY - 40) + "px");
-                })
-                .on("mouseout", function() {
-                    tooltip.style("visibility", "hidden");
-                });
-            
-            // Draw cooling tower silhouette
-            tower.append("path")
-                .attr("d", createTowerPath(branchX, towerWidth, towerHeight))
-                .attr("fill", "#555")
-                .attr("stroke", "#333")
-                .attr("stroke-width", 1);
-            
-            // Create value bar background (optional, for better visibility)
-            // tower.append("rect")
-            //     .attr("x", branchX)
-            //     .attr("y", yScale(d.Value))
-            //     .attr("width", towerWidth)
-            //     .attr("height", valueHeight - towerHeight)
-            //     .attr("fill", "rgba(100, 100, 200, 0.1)")
-            //     .attr("stroke", "rgba(100, 100, 200, 0.3)")
-            //     .attr("stroke-width", 1);
-            
-            // Create smoke bubbles
-            const numBubbles = Math.max(5, Math.ceil(d.Value / 1800));
-            createBubbles(tower, branchX, towerWidth, valueHeight, numBubbles);
-            
-            // Add value label
-            tower.append("text")
-                .attr("x", branchX + towerWidth / 2)
-                .attr("y", yScale(d.Value) - 10)
-                .attr("text-anchor", "middle")
-                .style("font-size", "12px")
-                .style("fill", "#ffffff")
-                .style("font-weight", "bold")
-                .text(d.Value);
-        });
-
-        // Update title with current year
-        svg.select("text").text(`Green Initiatives, in Tonnes of CO2 - ${currentYear}`);
+        // Add value label
+        tower.append("text")
+          .attr("x", companyX + towerWidth / 2)
+          .attr("y", yScale(d.Value) - 10)
+          .attr("text-anchor", "middle")
+          .style("font-size", "12px")
+          .style("fill", config.textColor)
+          .style("font-weight", "bold")
+          .text(d.Value.toLocaleString());
+      });
     }
-
-    // Initial visualization
-    updateVisualization();
-
+  
     // Handle window resize
-    window.addEventListener("resize", function() {
-        // Get new container dimensions and update if needed
-        // This is a placeholder - you would need to implement actual resize handling
-        console.log("Window resized - visualization should adapt");
-    });
-});
+    function handleResize() {
+      // Get new container width
+      const containerWidth = container.node().getBoundingClientRect().width;
+      
+      // Only resize if width changes significantly
+      if (Math.abs(containerWidth - config.width) > 50) {
+        // Update config width
+        config.width = containerWidth;
+        
+        // Recalculate inner width
+        const innerWidth = config.width - config.margin.left - config.margin.right;
+        
+        // Update SVG dimensions
+        svg.attr("width", config.width);
+        
+        // Update x scale
+        xScale.range([0, innerWidth]);
+        
+        // Update x axis
+        xAxisGroup.call(d3.axisBottom(xScale));
+        
+        // Update title position
+        title.attr("x", config.width / 2);
+        
+        // Re-render visualization
+        updateVisualization();
+      }
+    }
+  
+    // Load and process data
+    function loadData() {
+      d3.csv("data/data.csv")
+        .then(csvData => {
+          // Process data
+          data = csvData.map(d => ({
+            Brancher: d.Brancher,
+            Year: d.Year.toString(),
+            Value: +d.Value // Convert to number
+          }));
+          
+          // Extract unique companies and years
+          companies = Array.from(new Set(data.map(d => d.Brancher)));
+          years = Array.from(new Set(data.map(d => d.Year))).sort();
+          
+          console.log("Companies:", companies);
+          console.log("Years:", years);
+          
+          // Initialize the visualization
+          initializeScalesAndAxes();
+          createSlider();
+          updateYearDisplay();
+          updateVisualization();
+          
+          // Setup resize handler
+          window.addEventListener("resize", handleResize);
+        })
+        .catch(error => {
+          console.error("Error loading data:", error);
+          container.append("p")
+            .style("color", "red")
+            .style("text-align", "center")
+            .text("Error loading data. Please check the console for details.");
+        });
+    }
+    
+    // Initialize the visualization
+    loadData();
+    
+    // Return public methods for external control
+    return {
+      updateYear: function(yearIndex) {
+        currentYearIndex = yearIndex;
+        d3.select("#year-slider").node().value = yearIndex;
+        updateYearDisplay();
+        updateVisualization();
+      }
+    };
+  }
+  
+  // Initialize the visualization when the document is ready
+  document.addEventListener("DOMContentLoaded", function() {
+    createCO2EmissionsViz("#canvas");
+  });
