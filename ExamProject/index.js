@@ -25,4 +25,14 @@ d3.csv("data/data.csv").then((data) => {
         .domain(brancher)
         .range([margin.left, width - margin.right])
         .padding(1);
+
+    // 3.2 Create yScale
+
+    // 4. Create axes
+
+    // 4.1 Create xAxis
+
+    // 4.2 Create yAxis
+
+    // 5. Create bars
 });
