@@ -17,8 +17,8 @@ d3.csv("data/data.csv").then((data) => {
     let currentYear = years[0];
 
     // 2. Setup SVG canvas
-    const height = 800;
-    const width = 1400;
+    const height = 900;
+    const width = 1500;
     const margin = { top: 50, right: 50, bottom: 100, left: 80 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
