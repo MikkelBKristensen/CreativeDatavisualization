@@ -222,7 +222,7 @@ d3.csv("data/data.csv").then((data) => {
                 .attr("stroke-width", 1);
             
             // Create smoke bubbles
-            const numBubbles = Math.max(5, Math.ceil(d.Value / 10));
+            const numBubbles = Math.max(5, Math.ceil(d.Value / 1000));
             createBubbles(tower, branchX, towerWidth, valueHeight, numBubbles);
             
             // Add value label
