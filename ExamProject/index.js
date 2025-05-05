@@ -3,8 +3,8 @@ function createCO2EmissionsViz(containerId) {
     // Configuration object for easy customization
     const config = {
       width: 1200,
-      height: 1000,
-      margin: { top: 50, right: 50, bottom: 250, left: 80 },
+      height: 1100,
+      margin: { top: 50, right: 50, bottom: 300, left: 80 },
       backgroundColor: "#1f1f1f",
       textColor: "#ffffff",
       towerColor: "#555",
@@ -64,7 +64,7 @@ function createCO2EmissionsViz(containerId) {
     // Add axes groups
     const xAxisGroup = chart.append("g")
       .attr("transform", `translate(0, ${innerHeight})`)
-      .style("color", "#cccccc");
+      .style("color", "#1f1f1f");
       
     const yAxisGroup = chart.append("g")
       .style("color", "#cccccc");
@@ -177,7 +177,8 @@ function createCO2EmissionsViz(containerId) {
     // Create bubbles for a tower
     function createBubbles(selection, x, towerWidth, valueHeight, numBubbles) {
       const bubbleGroup = selection.append("g")
-        .attr("class", "bubbles");
+        .attr("class", "bubbles")
+        .attr("transform", `translate(0, -70)`); // Start at the base of the cooling tower
       
       // Generate bubbles based on CO2 value
       for (let i = 0; i < numBubbles; i++) {
@@ -227,7 +228,7 @@ function createCO2EmissionsViz(containerId) {
       xAxisGroup.call(d3.axisBottom(xScale))
         .selectAll("text")
         .style("text-anchor", "end") // Align text to the end
-        .attr("transform", "rotate(-45)") // Rotate text by -45 degrees
+        .attr("transform", "translate(0, 70) rotate(-45)") // Move text down and rotate
         .style("font-size", "14px")
         .style("fill", config.textColor);
   
@@ -255,6 +256,9 @@ function createCO2EmissionsViz(containerId) {
       // Clear previous towers and bars
       towerGroup.selectAll("*").remove();
       
+      // Move the entire tower group down by 70 pixels
+      towerGroup.attr("transform", "translate(0, 70)");
+  
       // Create cooling towers
       const towerHeight = 70; // Height of cooling tower in pixels
       const towerWidth = xScale.bandwidth();
