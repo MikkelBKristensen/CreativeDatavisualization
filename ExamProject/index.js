@@ -10,7 +10,13 @@ function createCO2EmissionsViz(containerId) {
       towerColor: "#555",
       towerStroke: "#333",
       animate: true,
-      animationDuration: 500
+      animationDuration: 500,
+      initialYScale: 300, // Much lower initial y value to zoom in on small values
+      maxYScale: null, // Will be calculated from data
+      zoomAnimationDuration: 6000, // Duration for the zoom-out animation
+      minBubbles: 1, // Minimum number of bubbles for small values
+      maxBubbles: 50, // Maximum number of bubbles for large values
+      cameraZoom: 1.5 // Visual zoom factor for the initial view
     };
   
     // Calculate inner dimensions
@@ -60,6 +66,9 @@ function createCO2EmissionsViz(containerId) {
     let companies = [];
     let currentYearIndex = 0;
     let xScale, yScale, xAxis, yAxis;
+    let maxYValue = 0; // Track the actual max value
+    let currentYMax = 0; // Current maximum for animation
+    let zoomAnimationInProgress = false;
     
     // Add axes groups
     const xAxisGroup = chart.append("g")
@@ -77,7 +86,7 @@ function createCO2EmissionsViz(containerId) {
       .attr("text-anchor", "middle")
       .style("font-size", "16px")
       .style("fill", config.textColor)
-      .text("CO2 Emissions (in 1000 Tonnes)");
+      .text("CO2 Emissions (in Tonnes)");
       
     // Tower group
     const towerGroup = chart.append("g")
@@ -100,15 +109,98 @@ function createCO2EmissionsViz(containerId) {
         .attr("id", "year-label")
         .style("font-weight", "bold")
         .text(years[currentYearIndex]);
-  
-      const sliderWidth = config.width * 0.6;
+
+      // Control buttons container
+      const controlsContainer = sliderContainer.append("div")
+        .style("margin-bottom", "15px")
+        .style("display", "flex")
+        .style("justify-content", "center")
+        .style("gap", "10px");
       
-      // Add play button
-      const playButton = sliderContainer.append("button")
+      // Previous year button
+      const prevButton = controlsContainer.append("button")
+        .text("◀ Previous Year")
+        .style("padding", "5px 15px")
+        .on("click", function() {
+          stopAnimation();
+          playButton.text("▶ Play");
+          if (currentYearIndex > 0) {
+            currentYearIndex--;
+            slider.node().value = currentYearIndex;
+            updateYearDisplay();
+            updateVisualization(false);
+          }
+        });
+      
+      // Add play button with animation toggle
+      const playButton = controlsContainer.append("button")
         .text("▶ Play")
-        .style("margin-right", "15px")
-        .style("padding", "5px 10px")
+        .style("padding", "5px 15px")
         .on("click", toggleAnimation);
+      
+      // Next year button
+      const nextButton = controlsContainer.append("button")
+        .text("Next Year ▶")
+        .style("padding", "5px 15px")
+        .on("click", function() {
+          stopAnimation();
+          playButton.text("▶ Play");
+          if (currentYearIndex < years.length - 1) {
+            currentYearIndex++;
+            slider.node().value = currentYearIndex;
+            updateYearDisplay();
+            updateVisualization(false);
+          }
+        });
+      
+      // Jump to first year button
+      const firstYearButton = controlsContainer.append("button")
+        .text("⏮ First Year")
+        .style("padding", "5px 15px")
+        .on("click", function() {
+          stopAnimation();
+          playButton.text("▶ Play");
+          currentYearIndex = 0;
+          slider.node().value = currentYearIndex;
+          updateYearDisplay();
+          updateVisualization(false);
+        });
+      
+      // Jump to last year button
+      const lastYearButton = controlsContainer.append("button")
+        .text("Last Year ⏭")
+        .style("padding", "5px 15px")
+        .on("click", function() {
+          stopAnimation();
+          playButton.text("▶ Play");
+          currentYearIndex = years.length - 1;
+          slider.node().value = currentYearIndex;
+          updateYearDisplay();
+          updateVisualization(false);
+        });
+      
+      // Second row of controls
+      const secondRowControls = sliderContainer.append("div")
+        .style("margin-top", "10px")
+        .style("margin-bottom", "15px")
+        .style("display", "flex")
+        .style("justify-content", "center")
+        .style("gap", "10px");
+      
+      // Add zoom animation button
+      const zoomButton = secondRowControls.append("button")
+        .text("🔍 Show Scale Animation")
+        .style("padding", "5px 15px")
+        .on("click", function() {
+          if (!zoomAnimationInProgress) {
+            stopAnimation();
+            playButton.text("▶ Play");
+            startZoomAnimation();
+            d3.select(this).text("⏱️ Animating...");
+          }
+        });
+        
+      const sliderWidth = config.width * 0.6;
         
       // Add slider
       const slider = sliderContainer.append("input")
@@ -121,9 +213,10 @@ function createCO2EmissionsViz(containerId) {
         .style("width", `${sliderWidth}px`)
         .on("input", function() {
           stopAnimation();
+          playButton.text("▶ Play");
           currentYearIndex = +this.value;
           updateYearDisplay();
-          updateVisualization();
+          updateVisualization(false); // Don't animate the scale when using slider
         });
         
       // Animation state
@@ -139,8 +232,8 @@ function createCO2EmissionsViz(containerId) {
             currentYearIndex = (currentYearIndex + 1) % years.length;
             slider.node().value = currentYearIndex;
             updateYearDisplay();
-            updateVisualization();
-          }, 3000);
+            updateVisualization(false); // Don't animate scale during year changes
+          }, 6500);
         }
       }
       
@@ -174,42 +267,90 @@ function createCO2EmissionsViz(containerId) {
       `;
     }
   
-    // Create bubbles for a tower
-    function createBubbles(selection, x, towerWidth, valueHeight, numBubbles) {
-      const bubbleGroup = selection.append("g")
-        .attr("class", "bubbles")
-        .attr("transform", `translate(0, -70)`); // Start at the base of the cooling tower
+    // Create bubbles for a tower with progressive animation
+  function createBubbles(selection, x, towerWidth, finalValue, maxScaleValue) {
+    const bubbleGroup = selection.append("g")
+      .attr("class", "bubbles")
+      .attr("transform", `translate(0, -70)`);
+    
+    // Calculate number of bubbles based on value (with min/max constraints)
+    // Scale the number of bubbles logarithmically to handle wide value ranges
+    const valueRatio = finalValue / maxYValue; // How big is this value compared to the max?
+    const numBubbles = Math.max(
+      config.minBubbles, 
+      Math.min(config.maxBubbles, Math.ceil(config.minBubbles + (config.maxBubbles - config.minBubbles) * valueRatio))
+    );
+    
+    // Generate bubbles based on CO2 value
+    for (let i = 0; i < numBubbles; i++) {
+      const bubbleYStart = innerHeight; // Start at the base of the cooling tower
       
-      // Generate bubbles based on CO2 value
-      for (let i = 0; i < numBubbles; i++) {
-        const bubbleYStart = innerHeight; // Start at the base of the cooling tower
-        const bubbleYEnd = yScale(valueHeight) - (i * (valueHeight / numBubbles)); // Adjust to match y-scale
-        const randOffset = Math.random() * 8 - 4;
-        const xPos = x + towerWidth / 2 + Math.sin(i * 0.5) * (towerWidth * 0.3) + randOffset;
-        const radius = Math.random() * 6 + 4;
-        
-        bubbleGroup.append("circle")
-          .attr("cx", xPos)
-          .attr("cy", bubbleYStart) // Start at the base
-          .attr("r", 0) // Start with radius 0 for animation
-          .attr("fill", d3.interpolateBlues(0.3 + Math.random() * 0.5))
-          .attr("opacity", 0.8)
-          .attr("stroke", "#fff")
-          .attr("stroke-width", 0.5)
-          .transition()
-          .duration(config.animationDuration * 3) // Take longer to rise
-          .ease(d3.easeLinear) // Smooth linear rise
-          .attr("cy", bubbleYEnd) // Animate to the trail height
-          .attr("r", radius) // Animate to final radius
-          .on("end", function() {
-            // Ensure the bubble stays at the final height
-            d3.select(this)
-              .transition()
-              .duration(200)
-              .attr("cy", bubbleYEnd);
-          });
-      }
+      // Calculate a position for this bubble along the tower path
+      const randOffset = Math.random() * 8 - 4;
+      const xPos = x + towerWidth / 2 + Math.sin(i * 0.5) * (towerWidth * 0.3) + randOffset;
+      const radius = Math.random() * 6 + 4;
+      
+      // Calculate this bubble's relative position in the overall value
+      // This bubble represents a portion of the final value
+      const bubbleFraction = i / numBubbles;
+      const bubbleRelativeValue = finalValue * bubbleFraction;
+      
+      // Calculate rise duration based on value - smaller values rise faster
+      // This creates a nice effect where small values complete quickly while large ones take longer
+      const riseDuration = Math.min(config.zoomAnimationDuration * 0.8, 
+                          config.zoomAnimationDuration * (0.3 + 0.7 * (finalValue / maxYValue)));
+      
+      // Generate a delay based on bubble's position in the stack
+      const delay = i * (riseDuration / numBubbles / 3);
+      
+      // Create the bubble with staggered animation
+      bubbleGroup.append("circle")
+        .attr("cx", xPos)
+        .attr("cy", bubbleYStart)
+        .attr("r", 0)
+        .attr("fill", d3.interpolateBlues(0.3 + Math.random() * 0.5))
+        .attr("opacity", 0.8)
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 0.5)
+        .attr("data-bubble-index", i)
+        .attr("data-bubble-fraction", bubbleFraction)
+        .attr("data-final-value", finalValue) // Store the final value this bubble represents
+        .transition()
+        .delay(delay)
+        .duration(riseDuration) // Value-dependent duration
+        .ease(d3.easeLinear)
+        .attr("r", radius)
+        .attrTween("cy", function() {
+          const startY = bubbleYStart;
+          const bubble = d3.select(this);
+          const bubbleIndex = +bubble.attr("data-bubble-index");
+          
+          return function(t) {
+            // Calculate how much of this bubble's journey is complete (0-1)
+            const journeyComplete = Math.min(1, t);
+            
+            // During animation, the bubble represents a value between 0 and finalValue * bubbleFraction
+            // based on how far along its journey it is
+            const currentValue = finalValue * (bubbleIndex / numBubbles) * journeyComplete;
+            
+            // For higher values that might be beyond the current scale:
+            // Calculate what portion of the value is visible on the current scale
+            const visibleValue = Math.min(currentValue, currentYMax);
+            
+            // Position based on current scale - ensures bubbles stay within visible area
+            const scaledY = yScale(visibleValue);
+            
+            // Add slight variance to make bubbles look more natural
+            const variance = Math.sin(t * 5 + bubbleIndex) * 3;
+            
+            return scaledY + variance;
+          };
+        });
     }
+    
+    // Return the bubble group for future updates
+    return bubbleGroup;
+  }
   
     // Initialize scales and axes
     function initializeScalesAndAxes() {
@@ -219,16 +360,22 @@ function createCO2EmissionsViz(containerId) {
         .range([0, innerWidth])
         .padding(0.5);
   
+      // Find the actual maximum value in the data
+      maxYValue = d3.max(data, d => d.Value) * 1.2;
+      
+      // Start with a smaller scale focused on lower values
+      currentYMax = config.initialYScale;
+      
       // Create y scale for values (adjusted to account for towers below the x-axis)
       yScale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.Value) * 1.2])
-        .range([innerHeight, config.margin.top]); // Extend range to match visualization
+        .domain([0, currentYMax])
+        .range([innerHeight, config.margin.top]);
   
       // Create axes
       xAxisGroup.call(d3.axisBottom(xScale))
         .selectAll("text")
-        .style("text-anchor", "end") // Align text to the end
-        .attr("transform", "translate(-5, 68) rotate(-45)") // Move text down and rotate
+        .style("text-anchor", "end")
+        .attr("transform", "translate(-5, 68) rotate(-45)")
         .style("font-size", "14px")
         .style("fill", config.textColor);
   
@@ -236,20 +383,22 @@ function createCO2EmissionsViz(containerId) {
     }
   
     // Update visualization based on current year
-    function updateVisualization() {
+    function updateVisualization(animateScale = false) {
       // Filter data for the current year
       const currentData = data.filter(d => d.Year === years[currentYearIndex]);
       
-      // Update y-scale domain if needed
-      const maxValue = d3.max(currentData, d => d.Value) * 1.2;
-      yScale.domain([0, maxValue]);
+      // Get the max value for the current year
+      const yearMaxValue = d3.max(currentData, d => d.Value) * 1.2;
       
-      // Animate y-axis if enabled
-      if (config.animate) {
-        yAxisGroup.transition()
-          .duration(config.animationDuration)
-          .call(d3.axisLeft(yScale));
-      } else {
+      // If we're not in a zoom animation and we're asked to animate the scale
+      if (animateScale && !zoomAnimationInProgress) {
+        // Start with the initial scale and animate to the max value
+        currentYMax = config.initialYScale;
+        animateYScale(yearMaxValue);
+      } else if (!zoomAnimationInProgress) {
+        // If not animating, just set the scale directly
+        currentYMax = yearMaxValue;
+        yScale.domain([0, currentYMax]);
         yAxisGroup.call(d3.axisLeft(yScale));
       }
       
@@ -266,7 +415,7 @@ function createCO2EmissionsViz(containerId) {
       // Draw towers and bubbles for each company
       currentData.forEach(d => {
         const companyX = xScale(d.Brancher);
-        const valueHeight = innerHeight - yScale(d.Value);
+        const valueHeight = d.Value; // Store raw value
 
         // Create tower group
         const tower = towerGroup.append("g")
@@ -289,19 +438,98 @@ function createCO2EmissionsViz(containerId) {
           .attr("stroke-width", 1);
         
         // Create smoke bubbles based on CO2 value
-        const numBubbles = Math.max(5, Math.ceil(d.Value / 1800));
-        createBubbles(tower, companyX, towerWidth, valueHeight, numBubbles);
+        const bubbleGroup = createBubbles(tower, companyX, towerWidth, valueHeight, currentYMax);
+        
+        // Store the final value with the bubble group for updating during animations
+        bubbleGroup.attr("data-value", valueHeight);
         
         // Add value label on the cooling tower
         tower.append("text")
           .attr("x", companyX + towerWidth / 2)
-          .attr("y", innerHeight - towerHeight / 2) // Position on the cooling tower
+          .attr("y", innerHeight - towerHeight / 2)
           .attr("text-anchor", "middle")
           .style("font-size", "12px")
           .style("fill", config.textColor)
           .style("font-weight", "bold")
           .text(d.Value.toLocaleString());
       });
+    }
+    
+    // Animate the y-scale from initial value to target
+    function animateYScale(targetMax) {
+      const startMax = currentYMax;
+      
+      d3.select({})
+        .transition()
+        .duration(config.zoomAnimationDuration)
+        .tween("scale", function() {
+          const interpolator = d3.interpolateNumber(startMax, targetMax);
+          
+          return function(t) {
+            // Update the current scale maximum
+            currentYMax = interpolator(t);
+            
+            // Update y-scale domain
+            yScale.domain([0, currentYMax]);
+            
+            // Update y-axis with animation
+            yAxisGroup.call(d3.axisLeft(yScale));
+            
+            // Update all bubbles to stay properly positioned within the current scale
+            towerGroup.selectAll(".bubbles circle").each(function() {
+              const bubble = d3.select(this);
+              const finalValue = +bubble.attr("data-final-value");
+              const bubbleIndex = +bubble.attr("data-bubble-index");
+              const numBubbles = finalValue / 1800; // Estimation of total bubbles
+              
+              // Calculate the value this bubble represents based on its index
+              const bubbleValue = finalValue * (bubbleIndex / numBubbles);
+              
+              // Ensure the bubble stays within the visible area of the current scale
+              const visibleValue = Math.min(bubbleValue, currentYMax);
+              const newY = yScale(visibleValue);
+              
+              // Update position
+              bubble.attr("cy", newY);
+            });
+          };
+        });
+    }
+    
+    // Start the zoom animation sequence
+    function startZoomAnimation() {
+      zoomAnimationInProgress = true;
+      
+      // Filter data for the current year
+      const currentData = data.filter(d => d.Year === years[currentYearIndex]);
+      
+      // Get the max value for the current year
+      const yearMaxValue = d3.max(currentData, d => d.Value) * 1.2;
+      
+      // Start with a small scale showing the lowest values clearly
+      currentYMax = config.initialYScale;
+      yScale.domain([0, currentYMax]);
+      yAxisGroup.call(d3.axisLeft(yScale));
+      
+      // Clear previous towers and bars to start fresh
+      towerGroup.selectAll("*").remove();
+      
+      // Redraw the visualization with this scale
+      updateVisualization();
+      
+      // Start the animation to zoom out
+      setTimeout(() => {
+        // Animate from initial scale to final scale
+        animateYScale(yearMaxValue);
+        
+        // Reset the animation button when finished
+        setTimeout(() => {
+          zoomAnimationInProgress = false;
+          d3.select("button").filter(function() {
+            return d3.select(this).text() === "⏱️ Animating...";
+          }).text("🔍 Show Scale Animation");
+        }, config.zoomAnimationDuration + 500);
+      }, 1000);
     }
   
     // Handle window resize
@@ -379,7 +607,10 @@ function createCO2EmissionsViz(containerId) {
         currentYearIndex = yearIndex;
         d3.select("#year-slider").node().value = yearIndex;
         updateYearDisplay();
-        updateVisualization();
+        updateVisualization(false);
+      },
+      showScaleAnimation: function() {
+        startZoomAnimation();
       }
     };
   }
