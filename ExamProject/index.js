@@ -228,7 +228,7 @@ function createCO2EmissionsViz(containerId) {
       xAxisGroup.call(d3.axisBottom(xScale))
         .selectAll("text")
         .style("text-anchor", "end") // Align text to the end
-        .attr("transform", "translate(0, 70) rotate(-45)") // Move text down and rotate
+        .attr("transform", "translate(-5, 68) rotate(-45)") // Move text down and rotate
         .style("font-size", "14px")
         .style("fill", config.textColor);
   
