@@ -1,13 +1,10 @@
-// CO2 Emissions Visualization using D3.js
-// Optimized and Simplified Version
-
 // Main visualization function - better encapsulation
 function createCO2EmissionsViz(containerId) {
     // Configuration object for easy customization
     const config = {
       width: 1200,
-      height: 800,
-      margin: { top: 50, right: 50, bottom: 100, left: 80 },
+      height: 1000,
+      margin: { top: 50, right: 50, bottom: 250, left: 80 },
       backgroundColor: "#1f1f1f",
       textColor: "#ffffff",
       towerColor: "#555",
@@ -219,7 +216,8 @@ function createCO2EmissionsViz(containerId) {
       // Create axes
       xAxisGroup.call(d3.axisBottom(xScale))
         .selectAll("text")
-        .style("text-anchor", "middle")
+        .style("text-anchor", "end") // Align text to the end
+        .attr("transform", "rotate(-45)") // Rotate text by -45 degrees
         .style("font-size", "14px")
         .style("fill", config.textColor);
   
@@ -255,7 +253,7 @@ function createCO2EmissionsViz(containerId) {
       currentData.forEach(d => {
         const companyX = xScale(d.Brancher);
         const valueHeight = innerHeight - yScale(d.Value);
-        
+
         // Create tower group
         const tower = towerGroup.append("g")
           .attr("class", "tower")
@@ -280,10 +278,10 @@ function createCO2EmissionsViz(containerId) {
         const numBubbles = Math.max(5, Math.ceil(d.Value / 1800));
         createBubbles(tower, companyX, towerWidth, valueHeight, numBubbles);
         
-        // Add value label
+        // Add value label on the cooling tower
         tower.append("text")
           .attr("x", companyX + towerWidth / 2)
-          .attr("y", yScale(d.Value) - 10)
+          .attr("y", innerHeight - towerHeight / 2) // Position on the cooling tower
           .attr("text-anchor", "middle")
           .style("font-size", "12px")
           .style("fill", config.textColor)
@@ -324,7 +322,7 @@ function createCO2EmissionsViz(containerId) {
   
     // Load and process data
     function loadData() {
-      d3.csv("data/data.csv")
+      d3.csv("data/dataENG.csv")
         .then(csvData => {
           // Process data
           data = csvData.map(d => ({
