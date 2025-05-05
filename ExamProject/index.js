@@ -181,22 +181,32 @@ function createCO2EmissionsViz(containerId) {
       
       // Generate bubbles based on CO2 value
       for (let i = 0; i < numBubbles; i++) {
-        const bubbleY = innerHeight - 80 - (i * (valueHeight) / numBubbles);
+        const bubbleYStart = innerHeight; // Start at the base of the cooling tower
+        const bubbleYEnd = yScale(valueHeight) - (i * (valueHeight / numBubbles)); // Adjust to match y-scale
         const randOffset = Math.random() * 8 - 4;
         const xPos = x + towerWidth / 2 + Math.sin(i * 0.5) * (towerWidth * 0.3) + randOffset;
         const radius = Math.random() * 6 + 4;
         
         bubbleGroup.append("circle")
           .attr("cx", xPos)
-          .attr("cy", bubbleY)
+          .attr("cy", bubbleYStart) // Start at the base
           .attr("r", 0) // Start with radius 0 for animation
           .attr("fill", d3.interpolateBlues(0.3 + Math.random() * 0.5))
           .attr("opacity", 0.8)
           .attr("stroke", "#fff")
           .attr("stroke-width", 0.5)
           .transition()
-          .duration(config.animationDuration)
-          .attr("r", radius); // Animate to final radius
+          .duration(config.animationDuration * 3) // Take longer to rise
+          .ease(d3.easeLinear) // Smooth linear rise
+          .attr("cy", bubbleYEnd) // Animate to the trail height
+          .attr("r", radius) // Animate to final radius
+          .on("end", function() {
+            // Ensure the bubble stays at the final height
+            d3.select(this)
+              .transition()
+              .duration(200)
+              .attr("cy", bubbleYEnd);
+          });
       }
     }
   
@@ -208,10 +218,10 @@ function createCO2EmissionsViz(containerId) {
         .range([0, innerWidth])
         .padding(0.5);
   
-      // Create y scale for values (with headroom)
+      // Create y scale for values (adjusted to account for towers below the x-axis)
       yScale = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.Value) * 1.2])
-        .range([innerHeight, 0]);
+        .range([innerHeight, config.margin.top]); // Extend range to match visualization
   
       // Create axes
       xAxisGroup.call(d3.axisBottom(xScale))
