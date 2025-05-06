@@ -31,7 +31,11 @@ function createCO2EmissionsViz(containerId) {
       .append("svg")
       .attr("width", config.width)
       .attr("height", config.height)
-      .style("background-color", config.backgroundColor)
+      .style("background-image", "url('BackgroundImg.webp')") // Set the background image
+      .style("background-size", "cover") // Ensure the image covers the entire SVG
+      .style("background-repeat", "no-repeat") // Prevent tiling
+      .style("background-position", "center") // Center the image
+      .style("opacity", 1) // Lower the opacity
       .style("display", "block")
       .style("margin", "0 auto");
   
@@ -41,7 +45,8 @@ function createCO2EmissionsViz(containerId) {
       .attr("y", config.margin.top / 2)
       .attr("text-anchor", "middle")
       .style("font-size", "24px")
-      .style("fill", config.textColor)
+      .style("fill", "000")
+      .style("font-family", "'Roboto', sans-serif") // Updated font
       .text("Green Initiatives, in Tonnes of CO2");
   
     // Add main visualization group
@@ -58,7 +63,8 @@ function createCO2EmissionsViz(containerId) {
       .style("padding", "10px")
       .style("border-radius", "5px")
       .style("pointer-events", "none")
-      .style("font-size", "14px");
+      .style("font-size", "14px")
+      .style("font-family", "'Roboto', sans-serif"); // Updated font
       
     // State management
     let data = [];
@@ -86,6 +92,7 @@ function createCO2EmissionsViz(containerId) {
       .attr("text-anchor", "middle")
       .style("font-size", "16px")
       .style("fill", config.textColor)
+      .style("font-family", "'Roboto', sans-serif") // Updated font
       .text("CO2 Emissions (in Tonnes)");
       
     // Tower group
@@ -151,32 +158,6 @@ function createCO2EmissionsViz(containerId) {
             updateYearDisplay();
             updateVisualization(false);
           }
-        });
-      
-      // Jump to first year button
-      const firstYearButton = controlsContainer.append("button")
-        .text("⏮ First Year")
-        .style("padding", "5px 15px")
-        .on("click", function() {
-          stopAnimation();
-          playButton.text("▶ Play");
-          currentYearIndex = 0;
-          slider.node().value = currentYearIndex;
-          updateYearDisplay();
-          updateVisualization(false);
-        });
-      
-      // Jump to last year button
-      const lastYearButton = controlsContainer.append("button")
-        .text("Last Year ⏭")
-        .style("padding", "5px 15px")
-        .on("click", function() {
-          stopAnimation();
-          playButton.text("▶ Play");
-          currentYearIndex = years.length - 1;
-          slider.node().value = currentYearIndex;
-          updateYearDisplay();
-          updateVisualization(false);
         });
       
       // Second row of controls
@@ -273,13 +254,8 @@ function createCO2EmissionsViz(containerId) {
       .attr("class", "bubbles")
       .attr("transform", `translate(0, -70)`);
     
-    // Calculate number of bubbles based on value (with min/max constraints)
-    // Scale the number of bubbles logarithmically to handle wide value ranges
-    const valueRatio = finalValue / maxYValue; // How big is this value compared to the max?
-    const numBubbles = Math.max(
-      config.minBubbles, 
-      Math.min(config.maxBubbles, Math.ceil(config.minBubbles + (config.maxBubbles - config.minBubbles) * valueRatio))
-    );
+    // Calculate number of bubbles based on Value / 1000 rounded
+    const numBubbles = Math.round(finalValue / 1000);
     
     // Generate bubbles based on CO2 value
     for (let i = 0; i < numBubbles; i++) {
@@ -290,18 +266,8 @@ function createCO2EmissionsViz(containerId) {
       const xPos = x + towerWidth / 2 + Math.sin(i * 0.5) * (towerWidth * 0.3) + randOffset;
       const radius = Math.random() * 6 + 4;
       
-      // Calculate this bubble's relative position in the overall value
-      // This bubble represents a portion of the final value
-      const bubbleFraction = i / numBubbles;
-      const bubbleRelativeValue = finalValue * bubbleFraction;
-      
-      // Calculate rise duration based on value - smaller values rise faster
-      // This creates a nice effect where small values complete quickly while large ones take longer
-      const riseDuration = Math.min(config.zoomAnimationDuration * 0.8, 
-                          config.zoomAnimationDuration * (0.3 + 0.7 * (finalValue / maxYValue)));
-      
       // Generate a delay based on bubble's position in the stack
-      const delay = i * (riseDuration / numBubbles / 3);
+      const delay = i * (config.zoomAnimationDuration / numBubbles / 3);
       
       // Create the bubble with staggered animation
       bubbleGroup.append("circle")
@@ -312,40 +278,12 @@ function createCO2EmissionsViz(containerId) {
         .attr("opacity", 0.8)
         .attr("stroke", "#fff")
         .attr("stroke-width", 0.5)
-        .attr("data-bubble-index", i)
-        .attr("data-bubble-fraction", bubbleFraction)
-        .attr("data-final-value", finalValue) // Store the final value this bubble represents
         .transition()
         .delay(delay)
-        .duration(riseDuration) // Value-dependent duration
+        .duration(config.zoomAnimationDuration * 0.8) // Adjusted duration
         .ease(d3.easeLinear)
         .attr("r", radius)
-        .attrTween("cy", function() {
-          const startY = bubbleYStart;
-          const bubble = d3.select(this);
-          const bubbleIndex = +bubble.attr("data-bubble-index");
-          
-          return function(t) {
-            // Calculate how much of this bubble's journey is complete (0-1)
-            const journeyComplete = Math.min(1, t);
-            
-            // During animation, the bubble represents a value between 0 and finalValue * bubbleFraction
-            // based on how far along its journey it is
-            const currentValue = finalValue * (bubbleIndex / numBubbles) * journeyComplete;
-            
-            // For higher values that might be beyond the current scale:
-            // Calculate what portion of the value is visible on the current scale
-            const visibleValue = Math.min(currentValue, currentYMax);
-            
-            // Position based on current scale - ensures bubbles stay within visible area
-            const scaledY = yScale(visibleValue);
-            
-            // Add slight variance to make bubbles look more natural
-            const variance = Math.sin(t * 5 + bubbleIndex) * 3;
-            
-            return scaledY + variance;
-          };
-        });
+        .attr("cy", yScale(finalValue * (i / numBubbles)));
     }
     
     // Return the bubble group for future updates
