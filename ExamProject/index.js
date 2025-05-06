@@ -402,9 +402,26 @@ function createCO2EmissionsViz(containerId) {
         yAxisGroup.call(d3.axisLeft(yScale));
       }
       
-      // Clear previous towers and bars
+      // Clear previous towers, bars, and gridlines
       towerGroup.selectAll("*").remove();
-      
+      chart.selectAll(".gridline").remove();
+
+      // Add stippled gridlines for y-axis ticks
+      const yTicks = yScale.ticks();
+      chart.selectAll(".gridline")
+        .data(yTicks)
+        .enter()
+        .append("line")
+        .attr("class", "gridline")
+        .attr("x1", 0)
+        .attr("x2", innerWidth)
+        .attr("y1", d => yScale(d))
+        .attr("y2", d => yScale(d))
+        .attr("stroke", "#cccccc")
+        .attr("stroke-dasharray", "4 4") // Stippled line style
+        .attr("stroke-width", 0.5)
+        .attr("opacity", 0.5);
+
       // Move the entire tower group down by 70 pixels
       towerGroup.attr("transform", "translate(0, 70)");
   
