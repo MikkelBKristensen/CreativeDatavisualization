@@ -1,0 +1,545 @@
+"Brancher","Year","Value"
+"I alt","1990",87875
+"I alt","1991",100473
+"I alt","1992",92497
+"I alt","1993",97648
+"I alt","1994",99679
+"I alt","1995",98246
+"I alt","1996",111701
+"I alt","1997",103726
+"I alt","1998",103754
+"I alt","1999",100554
+"I alt","2000",99970
+"I alt","2001",101159
+"I alt","2002",102590
+"I alt","2003",112372
+"I alt","2004",108346
+"I alt","2005",112535
+"I alt","2006",130295
+"I alt","2007",127757
+"I alt","2008",122052
+"I alt","2009",115798
+"I alt","2010",116647
+"I alt","2011",115322
+"I alt","2012",108377
+"I alt","2013",106517
+"I alt","2014",100921
+"I alt","2015",105187
+"I alt","2016",111727
+"I alt","2017",112360
+"I alt","2018",112867
+"I alt","2019",109488
+"I alt","2020",98374
+"I alt","2021",109473
+"I alt","2022",100407
+"I alt","2023",98338
+"Husholdninger","1990",12275
+"Husholdninger","1991",12628
+"Husholdninger","1992",11986
+"Husholdninger","1993",12753
+"Husholdninger","1994",12249
+"Husholdninger","1995",12604
+"Husholdninger","1996",13089
+"Husholdninger","1997",12723
+"Husholdninger","1998",12454
+"Husholdninger","1999",12699
+"Husholdninger","2000",12555
+"Husholdninger","2001",12834
+"Husholdninger","2002",12734
+"Husholdninger","2003",12997
+"Husholdninger","2004",12980
+"Husholdninger","2005",13213
+"Husholdninger","2006",13313
+"Husholdninger","2007",13690
+"Husholdninger","2008",13682
+"Husholdninger","2009",13364
+"Husholdninger","2010",13756
+"Husholdninger","2011",12999
+"Husholdninger","2012",12676
+"Husholdninger","2013",12702
+"Husholdninger","2014",12102
+"Husholdninger","2015",12892
+"Husholdninger","2016",13175
+"Husholdninger","2017",12920
+"Husholdninger","2018",12786
+"Husholdninger","2019",12346
+"Husholdninger","2020",10879
+"Husholdninger","2021",10893
+"Husholdninger","2022",9815
+"Husholdninger","2023",9570
+"Brancher i alt","1990",75558
+"Brancher i alt","1991",87784
+"Brancher i alt","1992",80421
+"Brancher i alt","1993",84688
+"Brancher i alt","1994",87155
+"Brancher i alt","1995",85642
+"Brancher i alt","1996",98612
+"Brancher i alt","1997",91004
+"Brancher i alt","1998",91299
+"Brancher i alt","1999",87855
+"Brancher i alt","2000",87415
+"Brancher i alt","2001",88325
+"Brancher i alt","2002",89857
+"Brancher i alt","2003",99375
+"Brancher i alt","2004",95366
+"Brancher i alt","2005",99322
+"Brancher i alt","2006",116983
+"Brancher i alt","2007",114067
+"Brancher i alt","2008",108370
+"Brancher i alt","2009",102435
+"Brancher i alt","2010",102891
+"Brancher i alt","2011",102323
+"Brancher i alt","2012",95701
+"Brancher i alt","2013",93815
+"Brancher i alt","2014",88819
+"Brancher i alt","2015",92295
+"Brancher i alt","2016",98552
+"Brancher i alt","2017",99440
+"Brancher i alt","2018",100081
+"Brancher i alt","2019",97142
+"Brancher i alt","2020",87495
+"Brancher i alt","2021",98580
+"Brancher i alt","2022",90592
+"Brancher i alt","2023",88769
+"Landbrug, skovbrug og fiskeri","1990",16687
+"Landbrug, skovbrug og fiskeri","1991",16682
+"Landbrug, skovbrug og fiskeri","1992",16436
+"Landbrug, skovbrug og fiskeri","1993",16371
+"Landbrug, skovbrug og fiskeri","1994",16194
+"Landbrug, skovbrug og fiskeri","1995",16270
+"Landbrug, skovbrug og fiskeri","1996",15903
+"Landbrug, skovbrug og fiskeri","1997",15797
+"Landbrug, skovbrug og fiskeri","1998",15766
+"Landbrug, skovbrug og fiskeri","1999",15373
+"Landbrug, skovbrug og fiskeri","2000",15440
+"Landbrug, skovbrug og fiskeri","2001",15459
+"Landbrug, skovbrug og fiskeri","2002",15401
+"Landbrug, skovbrug og fiskeri","2003",15131
+"Landbrug, skovbrug og fiskeri","2004",15018
+"Landbrug, skovbrug og fiskeri","2005",14812
+"Landbrug, skovbrug og fiskeri","2006",14544
+"Landbrug, skovbrug og fiskeri","2007",14625
+"Landbrug, skovbrug og fiskeri","2008",14499
+"Landbrug, skovbrug og fiskeri","2009",14270
+"Landbrug, skovbrug og fiskeri","2010",14238
+"Landbrug, skovbrug og fiskeri","2011",14222
+"Landbrug, skovbrug og fiskeri","2012",14009
+"Landbrug, skovbrug og fiskeri","2013",14024
+"Landbrug, skovbrug og fiskeri","2014",13976
+"Landbrug, skovbrug og fiskeri","2015",13909
+"Landbrug, skovbrug og fiskeri","2016",14100
+"Landbrug, skovbrug og fiskeri","2017",14042
+"Landbrug, skovbrug og fiskeri","2018",13916
+"Landbrug, skovbrug og fiskeri","2019",13743
+"Landbrug, skovbrug og fiskeri","2020",13884
+"Landbrug, skovbrug og fiskeri","2021",13710
+"Landbrug, skovbrug og fiskeri","2022",13519
+"Landbrug, skovbrug og fiskeri","2023",13311
+"Råstofindvinding","1990",1447
+"Råstofindvinding","1991",1885
+"Råstofindvinding","1992",2009
+"Råstofindvinding","1993",1931
+"Råstofindvinding","1994",1971
+"Råstofindvinding","1995",1869
+"Råstofindvinding","1996",2033
+"Råstofindvinding","1997",2613
+"Råstofindvinding","1998",2555
+"Råstofindvinding","1999",3390
+"Råstofindvinding","2000",3073
+"Råstofindvinding","2001",3111
+"Råstofindvinding","2002",3076
+"Råstofindvinding","2003",3014
+"Råstofindvinding","2004",3162
+"Råstofindvinding","2005",2978
+"Råstofindvinding","2006",2932
+"Råstofindvinding","2007",2828
+"Råstofindvinding","2008",2646
+"Råstofindvinding","2009",2331
+"Råstofindvinding","2010",2417
+"Råstofindvinding","2011",2169
+"Råstofindvinding","2012",2103
+"Råstofindvinding","2013",2021
+"Råstofindvinding","2014",1966
+"Råstofindvinding","2015",2101
+"Råstofindvinding","2016",1953
+"Råstofindvinding","2017",1978
+"Råstofindvinding","2018",1793
+"Råstofindvinding","2019",1650
+"Råstofindvinding","2020",1194
+"Råstofindvinding","2021",1210
+"Råstofindvinding","2022",1192
+"Råstofindvinding","2023",1215
+"Industri","1990",8749
+"Industri","1991",9290
+"Industri","1992",9387
+"Industri","1993",9382
+"Industri","1994",9510
+"Industri","1995",10301
+"Industri","1996",10355
+"Industri","1997",9948
+"Industri","1998",9764
+"Industri","1999",9800
+"Industri","2000",9677
+"Industri","2001",9749
+"Industri","2002",9178
+"Industri","2003",9149
+"Industri","2004",9094
+"Industri","2005",8236
+"Industri","2006",8469
+"Industri","2007",8332
+"Industri","2008",7595
+"Industri","2009",6444
+"Industri","2010",6514
+"Industri","2011",6804
+"Industri","2012",6427
+"Industri","2013",6012
+"Industri","2014",5865
+"Industri","2015",5980
+"Industri","2016",6201
+"Industri","2017",6552
+"Industri","2018",6499
+"Industri","2019",6455
+"Industri","2020",6427
+"Industri","2021",6725
+"Industri","2022",6397
+"Industri","2023",5740
+"Forsyningsvirksomhed","1990",29540
+"Forsyningsvirksomhed","1991",38628
+"Forsyningsvirksomhed","1992",33525
+"Forsyningsvirksomhed","1993",35198
+"Forsyningsvirksomhed","1994",39410
+"Forsyningsvirksomhed","1995",35951
+"Forsyningsvirksomhed","1996",48726
+"Forsyningsvirksomhed","1997",39687
+"Forsyningsvirksomhed","1998",36192
+"Forsyningsvirksomhed","1999",33246
+"Forsyningsvirksomhed","2000",29959
+"Forsyningsvirksomhed","2001",31575
+"Forsyningsvirksomhed","2002",32119
+"Forsyningsvirksomhed","2003",37573
+"Forsyningsvirksomhed","2004",31899
+"Forsyningsvirksomhed","2005",28756
+"Forsyningsvirksomhed","2006",36484
+"Forsyningsvirksomhed","2007",31944
+"Forsyningsvirksomhed","2008",29936
+"Forsyningsvirksomhed","2009",30132
+"Forsyningsvirksomhed","2010",32016
+"Forsyningsvirksomhed","2011",28791
+"Forsyningsvirksomhed","2012",25679
+"Forsyningsvirksomhed","2013",28710
+"Forsyningsvirksomhed","2014",24516
+"Forsyningsvirksomhed","2015",21484
+"Forsyningsvirksomhed","2016",23691
+"Forsyningsvirksomhed","2017",23353
+"Forsyningsvirksomhed","2018",22383
+"Forsyningsvirksomhed","2019",19455
+"Forsyningsvirksomhed","2020",18856
+"Forsyningsvirksomhed","2021",22383
+"Forsyningsvirksomhed","2022",20555
+"Forsyningsvirksomhed","2023",19431
+"Bygge og anlæg","1990",911
+"Bygge og anlæg","1991",946
+"Bygge og anlæg","1992",918
+"Bygge og anlæg","1993",787
+"Bygge og anlæg","1994",799
+"Bygge og anlæg","1995",854
+"Bygge og anlæg","1996",905
+"Bygge og anlæg","1997",943
+"Bygge og anlæg","1998",1028
+"Bygge og anlæg","1999",1101
+"Bygge og anlæg","2000",1115
+"Bygge og anlæg","2001",1143
+"Bygge og anlæg","2002",1261
+"Bygge og anlæg","2003",1417
+"Bygge og anlæg","2004",1454
+"Bygge og anlæg","2005",1507
+"Bygge og anlæg","2006",1559
+"Bygge og anlæg","2007",1749
+"Bygge og anlæg","2008",1631
+"Bygge og anlæg","2009",1441
+"Bygge og anlæg","2010",1568
+"Bygge og anlæg","2011",1481
+"Bygge og anlæg","2012",1497
+"Bygge og anlæg","2013",1512
+"Bygge og anlæg","2014",1526
+"Bygge og anlæg","2015",1563
+"Bygge og anlæg","2016",1618
+"Bygge og anlæg","2017",1649
+"Bygge og anlæg","2018",1678
+"Bygge og anlæg","2019",1630
+"Bygge og anlæg","2020",1681
+"Bygge og anlæg","2021",1681
+"Bygge og anlæg","2022",1718
+"Bygge og anlæg","2023",1728
+"Handel og transport mv.","1990",16509
+"Handel og transport mv.","1991",18495
+"Handel og transport mv.","1992",16552
+"Handel og transport mv.","1993",19353
+"Handel og transport mv.","1994",17683
+"Handel og transport mv.","1995",18863
+"Handel og transport mv.","1996",19035
+"Handel og transport mv.","1997",20373
+"Handel og transport mv.","1998",24335
+"Handel og transport mv.","1999",23295
+"Handel og transport mv.","2000",26563
+"Handel og transport mv.","2001",25690
+"Handel og transport mv.","2002",27206
+"Handel og transport mv.","2003",31362
+"Handel og transport mv.","2004",32792
+"Handel og transport mv.","2005",40923
+"Handel og transport mv.","2006",50998
+"Handel og transport mv.","2007",52471
+"Handel og transport mv.","2008",50165
+"Handel og transport mv.","2009",45854
+"Handel og transport mv.","2010",44173
+"Handel og transport mv.","2011",47012
+"Handel og transport mv.","2012",44099
+"Handel og transport mv.","2013",39642
+"Handel og transport mv.","2014",39213
+"Handel og transport mv.","2015",45478
+"Handel og transport mv.","2016",49242
+"Handel og transport mv.","2017",50011
+"Handel og transport mv.","2018",52008
+"Handel og transport mv.","2019",52456
+"Handel og transport mv.","2020",43636
+"Handel og transport mv.","2021",50898
+"Handel og transport mv.","2022",45452
+"Handel og transport mv.","2023",45589
+"Information og kommunikation","1990",160
+"Information og kommunikation","1991",150
+"Information og kommunikation","1992",145
+"Information og kommunikation","1993",118
+"Information og kommunikation","1994",123
+"Information og kommunikation","1995",125
+"Information og kommunikation","1996",136
+"Information og kommunikation","1997",138
+"Information og kommunikation","1998",139
+"Information og kommunikation","1999",135
+"Information og kommunikation","2000",135
+"Information og kommunikation","2001",125
+"Information og kommunikation","2002",114
+"Information og kommunikation","2003",100
+"Information og kommunikation","2004",108
+"Information og kommunikation","2005",119
+"Information og kommunikation","2006",115
+"Information og kommunikation","2007",128
+"Information og kommunikation","2008",139
+"Information og kommunikation","2009",122
+"Information og kommunikation","2010",118
+"Information og kommunikation","2011",108
+"Information og kommunikation","2012",105
+"Information og kommunikation","2013",103
+"Information og kommunikation","2014",92
+"Information og kommunikation","2015",94
+"Information og kommunikation","2016",97
+"Information og kommunikation","2017",95
+"Information og kommunikation","2018",89
+"Information og kommunikation","2019",84
+"Information og kommunikation","2020",83
+"Information og kommunikation","2021",99
+"Information og kommunikation","2022",87
+"Information og kommunikation","2023",82
+"Finansiering og forsikring","1990",92
+"Finansiering og forsikring","1991",84
+"Finansiering og forsikring","1992",77
+"Finansiering og forsikring","1993",62
+"Finansiering og forsikring","1994",55
+"Finansiering og forsikring","1995",52
+"Finansiering og forsikring","1996",60
+"Finansiering og forsikring","1997",64
+"Finansiering og forsikring","1998",55
+"Finansiering og forsikring","1999",52
+"Finansiering og forsikring","2000",58
+"Finansiering og forsikring","2001",56
+"Finansiering og forsikring","2002",68
+"Finansiering og forsikring","2003",72
+"Finansiering og forsikring","2004",73
+"Finansiering og forsikring","2005",78
+"Finansiering og forsikring","2006",80
+"Finansiering og forsikring","2007",79
+"Finansiering og forsikring","2008",82
+"Finansiering og forsikring","2009",75
+"Finansiering og forsikring","2010",71
+"Finansiering og forsikring","2011",66
+"Finansiering og forsikring","2012",63
+"Finansiering og forsikring","2013",60
+"Finansiering og forsikring","2014",55
+"Finansiering og forsikring","2015",55
+"Finansiering og forsikring","2016",63
+"Finansiering og forsikring","2017",60
+"Finansiering og forsikring","2018",60
+"Finansiering og forsikring","2019",55
+"Finansiering og forsikring","2020",54
+"Finansiering og forsikring","2021",57
+"Finansiering og forsikring","2022",54
+"Finansiering og forsikring","2023",51
+"Ejendomshandel og udlejning af erhvervsejendomme","1990",46
+"Ejendomshandel og udlejning af erhvervsejendomme","1991",47
+"Ejendomshandel og udlejning af erhvervsejendomme","1992",49
+"Ejendomshandel og udlejning af erhvervsejendomme","1993",38
+"Ejendomshandel og udlejning af erhvervsejendomme","1994",40
+"Ejendomshandel og udlejning af erhvervsejendomme","1995",39
+"Ejendomshandel og udlejning af erhvervsejendomme","1996",50
+"Ejendomshandel og udlejning af erhvervsejendomme","1997",58
+"Ejendomshandel og udlejning af erhvervsejendomme","1998",56
+"Ejendomshandel og udlejning af erhvervsejendomme","1999",67
+"Ejendomshandel og udlejning af erhvervsejendomme","2000",75
+"Ejendomshandel og udlejning af erhvervsejendomme","2001",76
+"Ejendomshandel og udlejning af erhvervsejendomme","2002",80
+"Ejendomshandel og udlejning af erhvervsejendomme","2003",94
+"Ejendomshandel og udlejning af erhvervsejendomme","2004",85
+"Ejendomshandel og udlejning af erhvervsejendomme","2005",88
+"Ejendomshandel og udlejning af erhvervsejendomme","2006",89
+"Ejendomshandel og udlejning af erhvervsejendomme","2007",108
+"Ejendomshandel og udlejning af erhvervsejendomme","2008",90
+"Ejendomshandel og udlejning af erhvervsejendomme","2009",81
+"Ejendomshandel og udlejning af erhvervsejendomme","2010",106
+"Ejendomshandel og udlejning af erhvervsejendomme","2011",91
+"Ejendomshandel og udlejning af erhvervsejendomme","2012",113
+"Ejendomshandel og udlejning af erhvervsejendomme","2013",106
+"Ejendomshandel og udlejning af erhvervsejendomme","2014",93
+"Ejendomshandel og udlejning af erhvervsejendomme","2015",97
+"Ejendomshandel og udlejning af erhvervsejendomme","2016",80
+"Ejendomshandel og udlejning af erhvervsejendomme","2017",84
+"Ejendomshandel og udlejning af erhvervsejendomme","2018",82
+"Ejendomshandel og udlejning af erhvervsejendomme","2019",76
+"Ejendomshandel og udlejning af erhvervsejendomme","2020",76
+"Ejendomshandel og udlejning af erhvervsejendomme","2021",87
+"Ejendomshandel og udlejning af erhvervsejendomme","2022",77
+"Ejendomshandel og udlejning af erhvervsejendomme","2023",77
+"Boliger","1990",53
+"Boliger","1991",51
+"Boliger","1992",47
+"Boliger","1993",45
+"Boliger","1994",37
+"Boliger","1995",35
+"Boliger","1996",34
+"Boliger","1997",31
+"Boliger","1998",30
+"Boliger","1999",23
+"Boliger","2000",22
+"Boliger","2001",23
+"Boliger","2002",25
+"Boliger","2003",27
+"Boliger","2004",28
+"Boliger","2005",22
+"Boliger","2006",28
+"Boliger","2007",22
+"Boliger","2008",26
+"Boliger","2009",29
+"Boliger","2010",32
+"Boliger","2011",27
+"Boliger","2012",41
+"Boliger","2013",40
+"Boliger","2014",40
+"Boliger","2015",42
+"Boliger","2016",41
+"Boliger","2017",45
+"Boliger","2018",41
+"Boliger","2019",42
+"Boliger","2020",40
+"Boliger","2021",46
+"Boliger","2022",44
+"Boliger","2023",45
+"Erhvervsservice","1990",267
+"Erhvervsservice","1991",269
+"Erhvervsservice","1992",252
+"Erhvervsservice","1993",238
+"Erhvervsservice","1994",234
+"Erhvervsservice","1995",231
+"Erhvervsservice","1996",257
+"Erhvervsservice","1997",271
+"Erhvervsservice","1998",278
+"Erhvervsservice","1999",289
+"Erhvervsservice","2000",308
+"Erhvervsservice","2001",350
+"Erhvervsservice","2002",383
+"Erhvervsservice","2003",436
+"Erhvervsservice","2004",469
+"Erhvervsservice","2005",489
+"Erhvervsservice","2006",494
+"Erhvervsservice","2007",534
+"Erhvervsservice","2008",489
+"Erhvervsservice","2009",450
+"Erhvervsservice","2010",454
+"Erhvervsservice","2011",395
+"Erhvervsservice","2012",424
+"Erhvervsservice","2013",433
+"Erhvervsservice","2014",400
+"Erhvervsservice","2015",404
+"Erhvervsservice","2016",405
+"Erhvervsservice","2017",411
+"Erhvervsservice","2018",430
+"Erhvervsservice","2019",431
+"Erhvervsservice","2020",449
+"Erhvervsservice","2021",483
+"Erhvervsservice","2022",462
+"Erhvervsservice","2023",462
+"Offentlig administration, undervisning og sundhed","1990",924
+"Offentlig administration, undervisning og sundhed","1991",1089
+"Offentlig administration, undervisning og sundhed","1992",858
+"Offentlig administration, undervisning og sundhed","1993",1006
+"Offentlig administration, undervisning og sundhed","1994",948
+"Offentlig administration, undervisning og sundhed","1995",913
+"Offentlig administration, undervisning og sundhed","1996",943
+"Offentlig administration, undervisning og sundhed","1997",901
+"Offentlig administration, undervisning og sundhed","1998",925
+"Offentlig administration, undervisning og sundhed","1999",905
+"Offentlig administration, undervisning og sundhed","2000",803
+"Offentlig administration, undervisning og sundhed","2001",782
+"Offentlig administration, undervisning og sundhed","2002",755
+"Offentlig administration, undervisning og sundhed","2003",795
+"Offentlig administration, undervisning og sundhed","2004",971
+"Offentlig administration, undervisning og sundhed","2005",1093
+"Offentlig administration, undervisning og sundhed","2006",975
+"Offentlig administration, undervisning og sundhed","2007",1034
+"Offentlig administration, undervisning og sundhed","2008",881
+"Offentlig administration, undervisning og sundhed","2009",1013
+"Offentlig administration, undervisning og sundhed","2010",987
+"Offentlig administration, undervisning og sundhed","2011",1004
+"Offentlig administration, undervisning og sundhed","2012",976
+"Offentlig administration, undervisning og sundhed","2013",993
+"Offentlig administration, undervisning og sundhed","2014",934
+"Offentlig administration, undervisning og sundhed","2015",937
+"Offentlig administration, undervisning og sundhed","2016",892
+"Offentlig administration, undervisning og sundhed","2017",993
+"Offentlig administration, undervisning og sundhed","2018",932
+"Offentlig administration, undervisning og sundhed","2019",907
+"Offentlig administration, undervisning og sundhed","2020",953
+"Offentlig administration, undervisning og sundhed","2021",1026
+"Offentlig administration, undervisning og sundhed","2022",871
+"Offentlig administration, undervisning og sundhed","2023",868
+"Kultur, fritid og anden service","1990",174
+"Kultur, fritid og anden service","1991",168
+"Kultur, fritid og anden service","1992",166
+"Kultur, fritid og anden service","1993",158
+"Kultur, fritid og anden service","1994",149
+"Kultur, fritid og anden service","1995",139
+"Kultur, fritid og anden service","1996",176
+"Kultur, fritid og anden service","1997",180
+"Kultur, fritid og anden service","1998",177
+"Kultur, fritid og anden service","1999",178
+"Kultur, fritid og anden service","2000",185
+"Kultur, fritid og anden service","2001",188
+"Kultur, fritid og anden service","2002",191
+"Kultur, fritid og anden service","2003",204
+"Kultur, fritid og anden service","2004",215
+"Kultur, fritid og anden service","2005",220
+"Kultur, fritid og anden service","2006",216
+"Kultur, fritid og anden service","2007",212
+"Kultur, fritid og anden service","2008",191
+"Kultur, fritid og anden service","2009",192
+"Kultur, fritid og anden service","2010",196
+"Kultur, fritid og anden service","2011",154
+"Kultur, fritid og anden service","2012",165
+"Kultur, fritid og anden service","2013",159
+"Kultur, fritid og anden service","2014",143
+"Kultur, fritid og anden service","2015",150
+"Kultur, fritid og anden service","2016",168
+"Kultur, fritid og anden service","2017",168
+"Kultur, fritid og anden service","2018",172
+"Kultur, fritid og anden service","2019",158
+"Kultur, fritid og anden service","2020",162
+"Kultur, fritid og anden service","2021",176
+"Kultur, fritid og anden service","2022",165
+"Kultur, fritid og anden service","2023",169
