@@ -1,16 +1,18 @@
 <script>
-  import SectionCO2Viz from "$lib/components/SectionCO2Viz.svelte";
-  import Co2EmissionPage from "$lib/components/CO2EmissionPage.svelte";
+  import HeroSection from "$lib/components/HeroSection.svelte";
 </script>
 
 <main>
-  <!-- <SectionCO2Viz /> -->
-  <Co2EmissionPage />
+  <HeroSection />
 </main>
 
 <style>
   main {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
+  }
+  main > * {
+    min-height: 100vh;
+    scroll-snap-align: start;
   }
 </style>

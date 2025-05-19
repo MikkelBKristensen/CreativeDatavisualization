@@ -15,3 +15,14 @@ section {
   padding: 2rem;
   scroll-snap-align: start; /* optional */
 }
+
+/* Hide scrollbars globally */
+html, body, main {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE and Edge */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+main::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari, Opera */
+}
