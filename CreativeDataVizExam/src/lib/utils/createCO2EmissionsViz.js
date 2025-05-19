@@ -1,9 +1,9 @@
 import * as d3 from 'd3';
 
-export function createCO2EmissionsViz(container) {
+export function createCO2EmissionsViz(container, width, height) {
   const config = {
-    width: 1200,
-    height: 1100,
+    width,
+    height,
     margin: { top: 50, right: 50, bottom: 300, left: 80 },
     backgroundColor: "#1f1f1f",
     textColor: "#ffffff",
@@ -28,7 +28,7 @@ export function createCO2EmissionsViz(container) {
     .append("svg")
     .attr("width", config.width)
     .attr("height", config.height)
-    .style("background-image", "url('/BackgroundImg.webp')")
+    .style("background-image", "url('/smoke-towers.webp')")
     .style("background-size", "cover")
     .style("background-repeat", "no-repeat")
     .style("background-position", "center")
@@ -215,7 +215,7 @@ export function createCO2EmissionsViz(container) {
 
       companies = Array.from(new Set(data.map(d => d.Brancher)));
       years = Array.from(new Set(data.map(d => d.Year))).sort();
-
+      
       initializeScalesAndAxes();
       createSlider();
       updateYearDisplay();

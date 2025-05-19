@@ -1,11 +1,17 @@
 <script>
   import { onMount } from 'svelte';
-  import { createCO2EmissionsViz } from '$lib/utils/createCO2EmissionsViz';
+  import { createCO2EmissionsViz } from '$lib/utils/createCO2EmissionsViz.js';
 
   let containerRef;
 
   onMount(() => {
-    createCO2EmissionsViz(containerRef);
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Delay to ensure layout is painted
+    setTimeout(() => {
+      createCO2EmissionsViz(containerRef, width, height);
+    }, 0);
   });
 </script>
 
@@ -16,12 +22,6 @@
 <style>
   .section {
     min-height: 100vh;
-    background-color: #1f1f1f;
-    padding: 2rem;
-  }
-
-  #canvas {
-    margin: 0 auto;
-    max-width: 100%;
+    overflow: hidden;
   }
 </style>
