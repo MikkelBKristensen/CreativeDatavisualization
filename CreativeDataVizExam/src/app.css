@@ -13,6 +13,7 @@ section {
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  scroll-behavior: smooth;
   scroll-snap-align: start; /* optional */
 }
 
@@ -25,4 +26,55 @@ html::-webkit-scrollbar,
 body::-webkit-scrollbar,
 main::-webkit-scrollbar {
   display: none;                /* Chrome, Safari, Opera */
+}
+
+/* Flexible container for viz + text side by side or stacked */
+.viz-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Text on left, viz on right */
+.viz-flex-container.left .viz-text {
+  order: 1;
+}
+.viz-flex-container.left .viz-chart {
+  order: 2;
+}
+
+/* Viz on left, text on right */
+.viz-flex-container.right .viz-chart {
+  order: 1;
+}
+.viz-flex-container.right .viz-text {
+  order: 2;
+}
+
+.viz-flex-container.vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.mt-4 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 1rem; }
+.ml-4 { margin-left: 1rem; }
+.mr-4 { margin-right: 1rem; }
+.mx-2 { margin-left: 0.5rem; margin-right: 0.5rem; }
+.my-2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+.ml-2 { margin-left: 0.5rem; }
+.mr-2 { margin-right: 0.5rem; }
+
+/* Stack on small screens */
+@media (max-width: 800px) {
+  .viz-flex-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .viz-flex-container .viz-text,
+  .viz-flex-container .viz-chart {
+    order: unset;
+  }
 }

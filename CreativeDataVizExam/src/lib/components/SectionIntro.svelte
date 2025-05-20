@@ -38,7 +38,7 @@
     align-items: center;
     justify-content: center;
     gap: 3rem;
-    background: #f7fafc;
+    background: #dde2e460;
     color: #222;
     padding: 4rem 2rem;
     min-height: 100vh;
