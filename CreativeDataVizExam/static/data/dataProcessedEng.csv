@@ -1,0 +1,273 @@
+"Brancher","Year","Value"
+"Total","1990",87875
+"Total","1991",100473
+"Total","1992",92497
+"Total","1993",97648
+"Total","1994",99679
+"Total","1995",98246
+"Total","1996",111701
+"Total","1997",103726
+"Total","1998",103754
+"Total","1999",100554
+"Total","2000",99970
+"Total","2001",101159
+"Total","2002",102590
+"Total","2003",112372
+"Total","2004",108346
+"Total","2005",112535
+"Total","2006",130295
+"Total","2007",127757
+"Total","2008",122052
+"Total","2009",115798
+"Total","2010",116647
+"Total","2011",115322
+"Total","2012",108377
+"Total","2013",106517
+"Total","2014",100921
+"Total","2015",105187
+"Total","2016",111727
+"Total","2017",112360
+"Total","2018",112867
+"Total","2019",109488
+"Total","2020",98374
+"Total","2021",109473
+"Total","2022",100407
+"Total","2023",98338
+"Households","1990",12275
+"Households","1991",12628
+"Households","1992",11986
+"Households","1993",12753
+"Households","1994",12249
+"Households","1995",12604
+"Households","1996",13089
+"Households","1997",12723
+"Households","1998",12454
+"Households","1999",12699
+"Households","2000",12555
+"Households","2001",12834
+"Households","2002",12734
+"Households","2003",12997
+"Households","2004",12980
+"Households","2005",13213
+"Households","2006",13313
+"Households","2007",13690
+"Households","2008",13682
+"Households","2009",13364
+"Households","2010",13756
+"Households","2011",12999
+"Households","2012",12676
+"Households","2013",12702
+"Households","2014",12102
+"Households","2015",12892
+"Households","2016",13175
+"Households","2017",12920
+"Households","2018",12786
+"Households","2019",12346
+"Households","2020",10879
+"Households","2021",10893
+"Households","2022",9815
+"Households","2023",9570
+"Total Industries","1990",75558
+"Total Industries","1991",87784
+"Total Industries","1992",80421
+"Total Industries","1993",84688
+"Total Industries","1994",87155
+"Total Industries","1995",85642
+"Total Industries","1996",98612
+"Total Industries","1997",91004
+"Total Industries","1998",91299
+"Total Industries","1999",87855
+"Total Industries","2000",87415
+"Total Industries","2001",88325
+"Total Industries","2002",89857
+"Total Industries","2003",99375
+"Total Industries","2004",95366
+"Total Industries","2005",99322
+"Total Industries","2006",116983
+"Total Industries","2007",114067
+"Total Industries","2008",108370
+"Total Industries","2009",102435
+"Total Industries","2010",102891
+"Total Industries","2011",102323
+"Total Industries","2012",95701
+"Total Industries","2013",93815
+"Total Industries","2014",88819
+"Total Industries","2015",92295
+"Total Industries","2016",98552
+"Total Industries","2017",99440
+"Total Industries","2018",100081
+"Total Industries","2019",97142
+"Total Industries","2020",87495
+"Total Industries","2021",98580
+"Total Industries","2022",90592
+"Total Industries","2023",88769
+"Agriculture, forestry, and fishing","1990",16687
+"Agriculture, forestry, and fishing","1991",16682
+"Agriculture, forestry, and fishing","1992",16436
+"Agriculture, forestry, and fishing","1993",16371
+"Agriculture, forestry, and fishing","1994",16194
+"Agriculture, forestry, and fishing","1995",16270
+"Agriculture, forestry, and fishing","1996",15903
+"Agriculture, forestry, and fishing","1997",15797
+"Agriculture, forestry, and fishing","1998",15766
+"Agriculture, forestry, and fishing","1999",15373
+"Agriculture, forestry, and fishing","2000",15440
+"Agriculture, forestry, and fishing","2001",15459
+"Agriculture, forestry, and fishing","2002",15401
+"Agriculture, forestry, and fishing","2003",15131
+"Agriculture, forestry, and fishing","2004",15018
+"Agriculture, forestry, and fishing","2005",14812
+"Agriculture, forestry, and fishing","2006",14544
+"Agriculture, forestry, and fishing","2007",14625
+"Agriculture, forestry, and fishing","2008",14499
+"Agriculture, forestry, and fishing","2009",14270
+"Agriculture, forestry, and fishing","2010",14238
+"Agriculture, forestry, and fishing","2011",14222
+"Agriculture, forestry, and fishing","2012",14009
+"Agriculture, forestry, and fishing","2013",14024
+"Agriculture, forestry, and fishing","2014",13976
+"Agriculture, forestry, and fishing","2015",13909
+"Agriculture, forestry, and fishing","2016",14100
+"Agriculture, forestry, and fishing","2017",14042
+"Agriculture, forestry, and fishing","2018",13916
+"Agriculture, forestry, and fishing","2019",13743
+"Agriculture, forestry, and fishing","2020",13884
+"Agriculture, forestry, and fishing","2021",13710
+"Agriculture, forestry, and fishing","2022",13519
+"Agriculture, forestry, and fishing","2023",13311
+"Industry","1990",8749
+"Industry","1991",9290
+"Industry","1992",9387
+"Industry","1993",9382
+"Industry","1994",9510
+"Industry","1995",10301
+"Industry","1996",10355
+"Industry","1997",9948
+"Industry","1998",9764
+"Industry","1999",9800
+"Industry","2000",9677
+"Industry","2001",9749
+"Industry","2002",9178
+"Industry","2003",9149
+"Industry","2004",9094
+"Industry","2005",8236
+"Industry","2006",8469
+"Industry","2007",8332
+"Industry","2008",7595
+"Industry","2009",6444
+"Industry","2010",6514
+"Industry","2011",6804
+"Industry","2012",6427
+"Industry","2013",6012
+"Industry","2014",5865
+"Industry","2015",5980
+"Industry","2016",6201
+"Industry","2017",6552
+"Industry","2018",6499
+"Industry","2019",6455
+"Industry","2020",6427
+"Industry","2021",6725
+"Industry","2022",6397
+"Industry","2023",5740
+"Utility services","1990",29540
+"Utility services","1991",38628
+"Utility services","1992",33525
+"Utility services","1993",35198
+"Utility services","1994",39410
+"Utility services","1995",35951
+"Utility services","1996",48726
+"Utility services","1997",39687
+"Utility services","1998",36192
+"Utility services","1999",33246
+"Utility services","2000",29959
+"Utility services","2001",31575
+"Utility services","2002",32119
+"Utility services","2003",37573
+"Utility services","2004",31899
+"Utility services","2005",28756
+"Utility services","2006",36484
+"Utility services","2007",31944
+"Utility services","2008",29936
+"Utility services","2009",30132
+"Utility services","2010",32016
+"Utility services","2011",28791
+"Utility services","2012",25679
+"Utility services","2013",28710
+"Utility services","2014",24516
+"Utility services","2015",21484
+"Utility services","2016",23691
+"Utility services","2017",23353
+"Utility services","2018",22383
+"Utility services","2019",19455
+"Utility services","2020",18856
+"Utility services","2021",22383
+"Utility services","2022",20555
+"Utility services","2023",19431
+"Trade and transport, etc.","1990",16509
+"Trade and transport, etc.","1991",18495
+"Trade and transport, etc.","1992",16552
+"Trade and transport, etc.","1993",19353
+"Trade and transport, etc.","1994",17683
+"Trade and transport, etc.","1995",18863
+"Trade and transport, etc.","1996",19035
+"Trade and transport, etc.","1997",20373
+"Trade and transport, etc.","1998",24335
+"Trade and transport, etc.","1999",23295
+"Trade and transport, etc.","2000",26563
+"Trade and transport, etc.","2001",25690
+"Trade and transport, etc.","2002",27206
+"Trade and transport, etc.","2003",31362
+"Trade and transport, etc.","2004",32792
+"Trade and transport, etc.","2005",40923
+"Trade and transport, etc.","2006",50998
+"Trade and transport, etc.","2007",52471
+"Trade and transport, etc.","2008",50165
+"Trade and transport, etc.","2009",45854
+"Trade and transport, etc.","2010",44173
+"Trade and transport, etc.","2011",47012
+"Trade and transport, etc.","2012",44099
+"Trade and transport, etc.","2013",39642
+"Trade and transport, etc.","2014",39213
+"Trade and transport, etc.","2015",45478
+"Trade and transport, etc.","2016",49242
+"Trade and transport, etc.","2017",50011
+"Trade and transport, etc.","2018",52008
+"Trade and transport, etc.","2019",52456
+"Trade and transport, etc.","2020",43636
+"Trade and transport, etc.","2021",50898
+"Trade and transport, etc.","2022",45452
+"Trade and transport, etc.","2023",45589
+"Other","1990",3174
+"Other","1991",3689
+"Other","1992",3516
+"Other","1993",3383
+"Other","1994",3356
+"Other","1995",3317
+"Other","1996",3566
+"Other","1997",3648
+"Other","1998",3716
+"Other","1999",3807
+"Other","2000",3701
+"Other","2001",3744
+"Other","2002",3707
+"Other","2003",3845
+"Other","2004",3935
+"Other","2005",4116
+"Other","2006",4130
+"Other","2007",4396
+"Other","2008",4269
+"Other","2009",4102
+"Other","2010",4457
+"Other","2011",4267
+"Other","2012",4386
+"Other","2013",4407
+"Other","2014",4315
+"Other","2015",4402
+"Other","2016",4292
+"Other","2017",4479
+"Other","2018",4546
+"Other","2019",4423
+"Other","2020",4417
+"Other","2021",4715
+"Other","2022",4390
+"Other","2023",4396

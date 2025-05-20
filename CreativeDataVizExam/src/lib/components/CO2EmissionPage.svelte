@@ -118,7 +118,7 @@
 </script>
 
 <div class="container">
-  <div class="chart-section">
+  <div class="chart-section section">
     <!-- Use dynamic sizing for the chart container -->
     <div bind:this={chartContainer} class="chart-container" style="width: {chartWidth}px; height: {chartHeight}px;"></div>
     
