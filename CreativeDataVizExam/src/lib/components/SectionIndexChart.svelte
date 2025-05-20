@@ -12,9 +12,9 @@
 </script>
 
 <section class="section">
-  <!-- <h2>Denmark's CO₂ Emissions Over Time</h2> -->
-  <div>
-    <div>
+  <div class="viz-flex-container">
+    <div class="viz-text">
+      <!-- The text is just placeholder text -->
       <h2>Denmark's CO₂ Emissions Over Time</h2>
       <p>
         This chart shows the total CO₂ emissions in Denmark from 1990 to 2021.
@@ -26,6 +26,8 @@
         a focus on the years 1990 to 2021.
       </p>
     </div>
-    <div bind:this={chartContainer}></div>
+    <div class="viz-chart">
+      <div bind:this={chartContainer}></div>
+    </div>
   </div>
 </section>

@@ -15,5 +15,20 @@
 </script>
 
 <section class="section">
-  <div bind:this={chartContainer}></div>
+  <div class="viz-flex-container">
+    <div class="viz-text">
+      <h2>Pie Chart of CO₂ Emissions by Sector</h2>
+      <p>
+        This pie chart visualizes the distribution of CO₂ emissions by sector
+        for the year {year}. The data is sourced from the Danish Energy Agency.
+      </p>
+      <p>
+        Hover over the segments to see the exact values and percentages for each
+        sector.
+      </p>
+    </div>
+    <div class="viz-chart ml-4">
+      <div bind:this={chartContainer}></div>
+    </div>
+  </div>
 </section>

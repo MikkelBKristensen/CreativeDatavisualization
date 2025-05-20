@@ -13,13 +13,14 @@
   });
 </script>
 
-<section class="section">
-  <h2>Stacked Area Chart Example</h2>
-  <p>
-    This chart visualizes the CO₂ emissions in Denmark from 1990 to 2021, broken
-    down by sector. The data is sourced from the Danish Energy Agency.
-  </p>
-  <div>
-    <div bind:this={chartContainer}></div>
+<section class="section" style="background-color: aliceblue;">
+  <div class="viz-flex-container">
+    <div class="viz-text">
+      <h2>Some text</h2>
+      <p>Explanation or controls here.</p>
+    </div>
+    <div class="viz-chart">
+      <div bind:this={chartContainer}></div>
+    </div>
   </div>
 </section>

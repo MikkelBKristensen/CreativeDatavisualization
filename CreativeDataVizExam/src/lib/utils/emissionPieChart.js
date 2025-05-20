@@ -91,7 +91,7 @@ export async function renderEmissionPieChart(
     .attr("transform", `translate(${width / 2},${height / 2})`);
 
   // Draw slices
-  chartGroup
+  const paths = chartGroup
     .selectAll("path")
     .data(arcs)
     .join("path")
@@ -105,14 +105,27 @@ export async function renderEmissionPieChart(
     .attr("fill", (d) => brancherColor(d.data[0]))
     .attr("stroke", "#fff")
     .attr("stroke-width", 1)
+    .style("transition", "filter 0.2s, opacity 0.2s")
     .on("mousemove", function (event, d) {
       tooltip.style.display = "block";
       tooltip.textContent = d.data[0];
       tooltip.style.left = event.clientX + 10 + "px";
       tooltip.style.top = event.clientY + 10 + "px";
+
+      // Highlight hovered slice, fade and desaturate others
+      paths
+        .transition()
+        .duration(100)
+        .style("filter", p => (p === d ? "brightness(1.2)" : "grayscale(0.7)"));
     })
     .on("mouseleave", function () {
       tooltip.style.display = "none";
+      // Reset all slices
+      paths
+        .transition()
+        .duration(200)
+        .style("filter", "none")
+        .style("opacity", 1);
     });
 
   // Tooltip setup
@@ -155,7 +168,8 @@ export async function renderEmissionPieChart(
   const legend = document.createElement("div");
   legend.style.display = "flex";
   legend.style.flexDirection = "column";
-  legend.style.gap = "0.5rem";
+  legend.style.gap = "1rem";
+  legend.style.marginLeft = "1rem";
   legend.style.fontFamily = "sans-serif";
   legend.style.fontSize = "14px";
   wrapper.appendChild(legend);

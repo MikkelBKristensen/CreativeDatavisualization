@@ -94,12 +94,13 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
     .y1(d => y(d[1]))
     .curve(d3.curveMonotoneX);
 
-  // Draw areas with tooltip
-  g.selectAll("path")
+  // Draw areas with tooltip and highlight effect
+  const paths = g.selectAll("path")
     .data(series)
     .join("path")
     .attr("fill", d => brancherColor(d.key))
     .attr("d", area)
+    .style("transition", "filter 0.2s, opacity 0.2s")
     .on("mousemove", function (event, d) {
       const [mx] = d3.pointer(event, this);
       // Find the closest year by pixel distance
@@ -124,9 +125,21 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
       tooltip.innerHTML = `<b>${d.key}</b><br>Year: ${yearData.data.Year}<br>Value: ${value}<br>Percent: ${percent}%`;
       tooltip.style.left = event.clientX + 15 + "px";
       tooltip.style.top = event.clientY + 15 + "px";
+
+      // Highlight hovered area, fade and desaturate others
+      paths
+        .transition()
+        .duration(100)
+        .style("filter", p => (p === d ? "brightness(1.1)" : "grayscale(0.7)"));
     })
     .on("mouseleave", function () {
       tooltip.style.display = "none";
+      // Reset all areas
+      paths
+        .transition()
+        .duration(200)
+        .style("filter", "none")
+        .style("opacity", 1);
     });
 
   // Tooltip setup
@@ -135,7 +148,7 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
   tooltip.style.pointerEvents = "none";
   tooltip.style.background = "rgba(0,0,0,0.85)";
   tooltip.style.color = "#fff";
-  tooltip.style.padding = "6px 12px";
+  tooltip.style.padding = "12px 12px";
   tooltip.style.borderRadius = "4px";
   tooltip.style.fontSize = "14px";
   tooltip.style.display = "none";
