@@ -42,8 +42,6 @@
     align-items: center;
     justify-content: center;
     gap: 3rem;
-    background: #dde2e460;
-    color: #222;
     padding: 4rem 2rem;
     min-height: 100vh;
   }
@@ -59,7 +57,6 @@
     font-size: 1.2rem;
     margin-top: 2rem;
     margin-bottom: 0.7rem;
-    color: #0097a7;
     font-weight: 600;
   }
   .intro-content ul {

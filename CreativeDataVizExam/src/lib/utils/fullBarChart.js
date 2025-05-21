@@ -134,11 +134,11 @@ export async function renderFullBarChart(container, csvUrl, width, height) {
     .attr("y", -margin.left + 15)
     .attr("x", -innerHeight / 2)
     .attr("text-anchor", "middle")
-    .attr("fill", "#333")
+    .attr("fill", "#fff") // Make y-axis label white
     // .attr("font-weight", "bold")
     .attr("font-size", "15px")
     .attr("font-family", "sans-serif")
-    .attr("opacity", 0.5)
+    .attr("opacity", 0.8)
     .text("Thousand tonnes CO₂e");
 
   // Set a static y-axis domain up to 55000
@@ -196,7 +196,7 @@ export async function renderFullBarChart(container, csvUrl, width, height) {
         .attr("y", d => y(valueMap.get(d) || 0) - 6)
         .attr("text-anchor", "middle")
         .style("font-size", "12px")
-        .style("fill", "#222")
+        .style("fill", "#fff") // Make value labels white
         .text(d => valueMap.get(d) || 0)
         .style("opacity", 0)
         .transition().duration(500)

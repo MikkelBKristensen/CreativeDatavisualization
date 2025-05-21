@@ -67,7 +67,7 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
     <label for="sort-select" style="
       font-weight:500;
       margin-right: 0.5rem;
-      color: #333;
+      color: #fff; /* Make label white */
       font-size: 1rem;
       letter-spacing: 0.02em;
     ">Order by:</label>
@@ -75,9 +75,9 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
       padding: 0.4em 1.5em 0.4em 0.8em;
       border-radius: 6px;
       border: 1px solid #b0b0b0;
-      background: #f8fafc;
+      background: #222;
       font-size: 1rem;
-      color: #222;
+      color: #fff; /* Make select text white */
       box-shadow: 0 1px 2px rgba(0,0,0,0.03);
       transition: border 0.2s;
       outline: none;
@@ -123,27 +123,34 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
     .attr("y", d => y(d[0]) + y.bandwidth() / 2)
     .attr("dy", "0.35em")
     .style("font-size", "13px")
+    .attr("fill", "#fff") // Make labels white
     .text(d => d[1]);
 
   // Y Axis (brancher names)
   const yAxis = g.append("g")
-    .call(d3.axisLeft(y));
+    .call(d3.axisLeft(y))
+    .call(g => g.selectAll("text").attr("fill", "#fff")) // Make y axis text white
+    .call(g => g.selectAll("line").attr("stroke", "#fff")) // Make y axis ticks white
+    .call(g => g.selectAll("path").attr("stroke", "#fff")); // Make y axis path white
 
   // X Axis (values)
   g.append("g")
     .attr("transform", `translate(0,${innerHeight})`)
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(x))
+    .call(g => g.selectAll("text").attr("fill", "#fff")) // Make x axis text white
+    .call(g => g.selectAll("line").attr("stroke", "#fff")) // Make x axis ticks white
+    .call(g => g.selectAll("path").attr("stroke", "#fff")); // Make x axis path white
 
   // X-axis label
   g.append("text")
     .attr("x", innerWidth / 2)
     .attr("y", innerHeight + 45)
     .attr("text-anchor", "middle")
-    .attr("fill", "#333")
+    .attr("fill", "#fff") // Make axis label white
     .attr("font-weight", "bold")
     .attr("font-size", "15px")
     .attr("font-family", "sans-serif")
-    .attr("opacity", 0.5)
+    .attr("opacity", 0.8)
     .text("Thousand tonnes CO₂e");
 
   // Sorting logic

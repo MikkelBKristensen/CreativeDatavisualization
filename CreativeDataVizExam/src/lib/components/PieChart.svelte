@@ -15,7 +15,7 @@
   });
 </script>
 
-<section class="section" style="background-color: #dde2e460">
+<section class="section">
   <div class="viz-flex-container">
     <div class="viz-text">
       <h2>Pie Chart of CO₂ Emissions by Sector (1990)</h2>

@@ -198,10 +198,10 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
     .attr("y", -margin.left + 35)
     .attr("x", -innerHeight / 2)
     .attr("text-anchor", "middle")
-    .attr("fill", "#333")
+    .attr("fill", "#fff") // Make y-axis label white
     // .attr("font-weight", "bold")
     .attr("font-size", "15px")
-    .attr("opacity", 0.5)
+    .attr("opacity", 0.8)
     .text("Thousand tonnes CO2e");
 
   // Add horizontal grid lines for easier value reading
@@ -239,6 +239,7 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
       .attr("x", 24)
       .attr("y", yPos + 13)
       .text(brancher)
-      .style("font-size", "13px");
+      .style("font-size", "13px")
+      .attr("fill", "#fff"); // Make legend text white
   });
 }

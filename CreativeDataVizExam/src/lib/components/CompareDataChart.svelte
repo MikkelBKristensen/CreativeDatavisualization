@@ -15,7 +15,7 @@
   });
 </script>
 
-<section class="section" style="background-color: aliceblue;">
+<section class="section">
   <div class="viz-flex-container left">
     <div class="viz-text">
       <h2>Compare Totals</h2>

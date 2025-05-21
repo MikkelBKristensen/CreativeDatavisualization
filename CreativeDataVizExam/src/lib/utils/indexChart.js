@@ -110,7 +110,7 @@ export async function renderIndexChart(
     .append("line")
     .attr("y1", heightParam)
     .attr("y2", 0)
-    .attr("stroke", "black");
+    .attr("stroke", "#fff"); // Make the vertical line white
 
   // Create a line and a label for each series.
   const serie = svg
@@ -138,9 +138,6 @@ export async function renderIndexChart(
     .append("text")
     .datum((d) => ({ key: d.key, value: d.values[d.values.length - 1].value }))
     .attr("fill", (d) => brancherColor(d.key))
-    .attr("paint-order", "stroke")
-    .attr("stroke", "white")
-    .attr("stroke-width", 3)
     .attr("x", x.range()[1] + 3)
     .attr("y", (d) => y(d.value))
     .attr("dy", "0.35em")

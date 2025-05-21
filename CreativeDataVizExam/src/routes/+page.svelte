@@ -10,8 +10,9 @@
   import CompareDataChart from "$lib/components/CompareDataChart.svelte";
 </script>
 
+<SectionHero />
+
 <main>
-  <SectionHero />
   <SectionIntro />
   <SortableBarChart />
   <PieChart />
@@ -22,4 +23,16 @@
 </main>
 
 <style>
+  main {
+    min-height: 100vh;
+    background: linear-gradient(
+      #0e0909 0%,
+      #6db872 5%,
+      #4e7651 19%,
+      #060b06 72%,
+      #040804 80%,
+      #0b150c 100%
+    );
+    color: #fff;
+  }
 </style>

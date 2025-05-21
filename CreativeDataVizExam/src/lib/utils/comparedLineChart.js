@@ -87,11 +87,11 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
       .attr("y", -margin.left + 20)
       .attr("x", -innerHeight / 2)
       .attr("text-anchor", "middle")
-      .attr("fill", "#333")
+      .attr("fill", "#fff") // Make y-axis label white
       .attr("font-weight", "bold")
       .attr("font-size", "15px")
       .attr("font-family", "sans-serif")
-      .attr("opacity", 0.5)
+      .attr("opacity", 0.8)
       .text("Thousand tonnes CO₂e");
 
     // Lines
@@ -132,7 +132,8 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
         .attr("y", yPos + 13)
         .text(item.label)
         .style("font-size", "15px")
-        .attr("alignment-baseline", "middle");
+        .attr("alignment-baseline", "middle")
+        .attr("fill", "#fff"); // Make legend text white
     });
 
     // Tooltip setup
