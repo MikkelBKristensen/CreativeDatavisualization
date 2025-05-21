@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import { groupBranchersAsOther } from "./dataProcessing";
+import { brancherColor } from "./colorScale";
 
 // Accept a DOM element and a CSV URL
 export async function renderIndexChart(
@@ -62,11 +63,6 @@ export async function renderIndexChart(
     .scaleLog()
     .domain([1 / k, k])
     .rangeRound([heightParam - marginBottom, marginTop]);
-
-  // Create a color scale to identify series.
-  const z = d3
-    .scaleOrdinal(d3.schemeCategory10)
-    .domain(series.map((d) => d.key));
 
   // For each given series, the update function needs to identify the date—closest to the current
   // date—that actually contains a value. To do this efficiently, it uses a bisector:
@@ -135,13 +131,13 @@ export async function renderIndexChart(
     .attr("stroke-width", 1.5)
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
-    .attr("stroke", (d) => z(d.key))
+    .attr("stroke", (d) => brancherColor(d.key))
     .attr("d", (d) => line(d.values));
 
   serie
     .append("text")
     .datum((d) => ({ key: d.key, value: d.values[d.values.length - 1].value }))
-    .attr("fill", (d) => z(d.key))
+    .attr("fill", (d) => brancherColor(d.key))
     .attr("paint-order", "stroke")
     .attr("stroke", "white")
     .attr("stroke-width", 3)
