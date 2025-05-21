@@ -14,10 +14,10 @@
   });
 </script>
 
-<section class="section">
+<section class="section" style="background-color: #dde2e460">
   <div class="viz-flex-container">
     <div class="viz-text">
-      <h2>Pie Chart of CO₂ Emissions by Sector</h2>
+      <h2>Pie Chart of CO₂ Emissions by Sector (1990)</h2>
       <p>
         This pie chart visualizes the distribution of CO₂ emissions by sector
         for the year {year}. The data is sourced from the Danish Energy Agency.
