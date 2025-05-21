@@ -13,8 +13,8 @@
   <SectionHero />
   <SectionIntro />
   <SortableBarChart />
-  <SectionIndexChart />
   <PieChart />
+  <SectionIndexChart />
   <StackedAreaChart />
   <FullBarChart />
 </main>
