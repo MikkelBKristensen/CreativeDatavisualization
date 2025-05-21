@@ -3,13 +3,12 @@ import { groupBranchersAsOther } from "./dataProcessing";
 import { brancherColor } from "./colorScale";
 
 /**
- * Renders a pie chart showing the percentage of emissions each "Brancher" is responsible for,
- * and displays a key/legend to the right with brancher names, percentages, and colors.
- * @param {HTMLElement} container - The DOM element to render the chart in.
- * @param {string} csvUrl - The URL to the CSV data.
- * @param {number} width - Width of the SVG.
- * @param {number} height - Height of the SVG.
- * @param {string|number} [year] - Optional: Only show data for this year (if omitted, uses all data).
+ * Renders a pie chart showing the percentage of emissions for each sector
+ * @param {HTMLElement} container
+ * @param {string} csvUrl
+ * @param {number} width
+ * @param {number} height
+ * @param {string|number} [year]
  */
 export async function renderEmissionPieChart(
   container,
@@ -75,7 +74,7 @@ export async function renderEmissionPieChart(
   // Create a flex container for chart and key
   const wrapper = document.createElement("div");
   wrapper.style.display = "flex";
-  wrapper.style.alignItems = "center"; // <-- changed from flex-start to center
+  wrapper.style.alignItems = "center";
   wrapper.style.gap = "2rem";
   container.appendChild(wrapper);
 
@@ -141,7 +140,7 @@ export async function renderEmissionPieChart(
   tooltip.style.zIndex = "1000";
   document.body.appendChild(tooltip);
 
-  // Add labels on slices (optional, can be removed if only using key)
+  // Add labels on slices
   chartGroup
     .selectAll("text")
     .data(arcs)
