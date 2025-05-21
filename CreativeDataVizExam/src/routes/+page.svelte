@@ -6,6 +6,7 @@
   import Co2EmissionPage from "$lib/components/CO2EmissionPage.svelte";
   import PieChart from "$lib/components/PieChart.svelte";
   import StackedAreaChart from "$lib/components/StackedAreaChart.svelte";
+  import FullBarChart from "$lib/components/FullBarChart.svelte";
 </script>
 
 <main>
@@ -15,6 +16,7 @@
   <SectionIndexChart />
   <PieChart />
   <StackedAreaChart />
+  <FullBarChart />
 </main>
 
 <style>
