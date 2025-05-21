@@ -59,7 +59,7 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
   const series = stack(stackedData);
 
   // Scales
-  const margin = { top: 40, right: 160, bottom: 40, left: 60 };
+  const margin = { top: 40, right: 160, bottom: 40, left: 100 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -100,7 +100,21 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
     .join("path")
     .attr("fill", d => brancherColor(d.key))
     .attr("d", area)
-    .style("transition", "filter 0.2s, opacity 0.2s")
+    .style("transition", "filter 0.2s, opacity 0.2s");
+
+  // Add a vertical line for hovered year
+  const hoverLine = g.append("line")
+    .attr("class", "hover-year-line")
+    .attr("y1", 0)
+    .attr("y2", innerHeight)
+    .attr("stroke", "#222")
+    .attr("stroke-width", 1)
+    .attr("opacity", 0.5)
+    .attr("stroke-dasharray", "5")
+    .style("opacity", 0);
+
+  // Tooltip and highlight logic
+  paths
     .on("mousemove", function (event, d) {
       const [mx] = d3.pointer(event, this);
       // Find the closest year by pixel distance
@@ -137,6 +151,12 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
         .transition()
         .duration(100)
         .style("filter", p => (p === d ? "brightness(1.1)" : "grayscale(0.7)"));
+
+      // Show and move the hover line
+      hoverLine
+        .style("opacity", 1)
+        .attr("x1", x(closestYear))
+        .attr("x2", x(closestYear));
     })
     .on("mouseleave", function () {
       tooltip.style.display = "none";
@@ -146,6 +166,9 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
         .duration(200)
         .style("filter", "none")
         .style("opacity", 1);
+
+      // Hide the hover line
+      hoverLine.style("opacity", 0);
     });
 
   // Tooltip setup
@@ -168,6 +191,18 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
 
   g.append("g")
     .call(d3.axisLeft(y));
+
+  // Y-axis label
+  g.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -margin.left + 35)
+    .attr("x", -innerHeight / 2)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#333")
+    // .attr("font-weight", "bold")
+    .attr("font-size", "15px")
+    .attr("opacity", 0.5)
+    .text("Thousand tonnes CO2e");
 
   // Add horizontal grid lines for easier value reading
   g.append("g")

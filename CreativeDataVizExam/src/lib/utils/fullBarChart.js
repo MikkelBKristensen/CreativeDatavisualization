@@ -72,7 +72,7 @@ export async function renderFullBarChart(container, csvUrl, width, height) {
   // Year label
   const yearLabel = document.createElement("div");
   yearLabel.style.fontWeight = "bold";
-  yearLabel.style.fontSize = "1.3rem";
+  yearLabel.style.fontSize = "3rem";
   yearLabel.style.textAlign = "center";
   yearLabel.style.margin = "0 0 0.5rem 0";
   yearLabel.textContent = currentYear;
@@ -127,6 +127,19 @@ export async function renderFullBarChart(container, csvUrl, width, height) {
   // Add horizontal grid lines for y-axis ticks
   const yGrid = g.append("g")
     .attr("class", "y-grid");
+
+  // Add Y-axis label
+  g.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -margin.left + 15)
+    .attr("x", -innerHeight / 2)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#333")
+    // .attr("font-weight", "bold")
+    .attr("font-size", "15px")
+    .attr("font-family", "sans-serif")
+    .attr("opacity", 0.5)
+    .text("Thousand tonnes CO₂e");
 
   // Set a static y-axis domain up to 55000
   y.domain([0, 55000]);
