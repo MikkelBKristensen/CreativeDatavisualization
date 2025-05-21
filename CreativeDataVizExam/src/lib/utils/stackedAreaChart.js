@@ -122,7 +122,13 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
       const percent = total ? ((value / total) * 100).toFixed(1) : "0.0";
 
       tooltip.style.display = "block";
-      tooltip.innerHTML = `<b>${d.key}</b><br>Year: ${yearData.data.Year}<br>Value: ${value}<br>Percent: ${percent}%`;
+      tooltip.innerHTML = `
+        <b>${d.key}</b><br>
+        Year: ${yearData.data.Year}<br>
+        Value: ${value}<br>
+        Percent: ${percent}%<br>
+        <span style="color:#bbb;">Total for year: ${total}</span>
+      `;
       tooltip.style.left = event.clientX + 15 + "px";
       tooltip.style.top = event.clientY + 15 + "px";
 
