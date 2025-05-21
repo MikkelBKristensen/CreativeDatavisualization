@@ -3,8 +3,8 @@
   import { renderStackedAreaChart } from "$lib/utils/stackedAreaChart.js";
 
   export let csvUrl = "/data/dataENG.csv";
-  export let width = 900;
-  export let height = 500;
+  export let width = 1200;
+  export let height = 600;
 
   let chartContainer;
 
@@ -14,7 +14,7 @@
 </script>
 
 <section class="section" style="background-color: aliceblue;">
-  <div class="viz-flex-container">
+  <div class="viz-flex-container left">
     <div class="viz-text">
       <h2>Some text</h2>
       <p>Explanation or controls here.</p>
