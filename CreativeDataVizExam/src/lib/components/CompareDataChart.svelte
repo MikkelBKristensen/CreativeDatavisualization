@@ -4,7 +4,7 @@
 
   export let csvUrl1 = "/data/KF24Total.csv";
   export let csvUrl2 = "/data/dataENG.csv";
-  export let width = 1200;
+  export let width = 1500;
   export let height = 600;
 
   let chartContainer;

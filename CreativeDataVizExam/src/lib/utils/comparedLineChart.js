@@ -9,7 +9,7 @@ import * as d3 from "d3";
  * @param {number} height - Height of the SVG.
  * @param {boolean} includeExtraYears - Whether to include extra years from KF24Total.
  */
-export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width, height, includeExtraYears = true) {
+export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width, height, includeExtraYears = false) {
   // Add toggle button if not present
   let btn = container.parentNode.querySelector("#toggle-extra-years");
   if (!btn) {
@@ -27,8 +27,8 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
     container.parentNode.insertBefore(btn, container);
   }
   btn.textContent = includeExtraYears
-    ? "Show only years with data in both datasets"
-    : "Show all years from KF24Total";
+    ? "Hide prediction of Emission in Denmark"
+    : "Show prediction of Emission in Denmark";
 
   // Load both datasets
   const [data1, data2] = await Promise.all([
@@ -111,7 +111,8 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
     // Legend
     const legendData = [
       { label: "Emission from danish economy", color: "#FF4136" },
-      { label: "Emission in Denmark", color: "#0074D9" }
+      { label: "Emission in Denmark", color: "#0074D9" },
+      { label: "Climate Law Goal (23,502)", color: "#2ECC40" }
     ];
     const legendBoxHeight = legendData.length * 28;
     const legendY = margin.top + (innerHeight - legendBoxHeight) / 2;
@@ -183,7 +184,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
     .call(
       d3.axisBottom(x)
         .tickFormat(d3.format("d"))
-        .ticks(Math.min(years.length, 20))
+        .tickValues(years.map(Number)) // Show all years as ticks
     )
     .selectAll("text")
     .attr("transform", "rotate(-30)")
@@ -218,6 +219,34 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
     .attr("stroke", "#FF4136")
     .attr("stroke-width", 2.5)
     .attr("d", lineGen);
+
+  // --- CLIMATE LAW GOAL LINE ---
+  // Remove previous goal line/label if present
+  g.selectAll(".climate-goal-line").remove();
+  g.selectAll(".climate-goal-label").remove();
+
+  const goalValue = 23502;
+  const yGoal = y(goalValue);
+
+  g.append("line")
+    .attr("class", "climate-goal-line")
+    .attr("x1", 0)
+    .attr("x2", innerWidth)
+    .attr("y1", yGoal)
+    .attr("y2", yGoal)
+    .attr("stroke", "#2ECC40")
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "6,4");
+
+  g.append("text")
+    .attr("class", "climate-goal-label")
+    .attr("x", innerWidth - 180) // moved further left
+    .attr("y", yGoal - 8)
+    .attr("text-anchor", "end")
+    .attr("fill", "#2ECC40")
+    .attr("font-size", "15px")
+    .attr("font-weight", "bold")
+    .text("Climate Law");
 
   // --- TOOLTIP & HOVER LINE ---
   const tooltip = document.getElementById("compared-tooltip");
