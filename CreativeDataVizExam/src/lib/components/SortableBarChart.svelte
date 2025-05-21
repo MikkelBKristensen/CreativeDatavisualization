@@ -1,8 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { renderSortableBarChart } from "$lib/utils/sortableBarChart.js";
+  import { base } from "$app/paths";
 
-  export let csvUrl = "/data/dataENG.csv";
+  export let csvUrl = `${base}/data/dataENG.csv`;
   export let width = 1000;
   export let height = 700;
 

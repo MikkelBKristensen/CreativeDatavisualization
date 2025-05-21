@@ -1,8 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { renderFullBarChart } from "$lib/utils/fullBarChart.js";
+  import { base } from "$app/paths";
 
-  export let csvUrl = "/data/dataENG.csv";
+  export let csvUrl = `${base}/data/dataENG.csv`;
   export let width = 1100;
   export let height = 600;
 

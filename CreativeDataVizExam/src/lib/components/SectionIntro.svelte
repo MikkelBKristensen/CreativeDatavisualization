@@ -1,3 +1,7 @@
+<script>
+  import { base } from '$app/paths';
+</script>
+
 <section class="intro">
   <div class="intro-content">
     <h2>Understanding Denmark's Carbon Footprint</h2>
@@ -27,7 +31,7 @@
     </p>
   </div>
   <div class="intro-image">
-    <img src="/images/denmark-landscape.jpg" alt="Denmark landscape" />
+    <img src="{base}/images/denmark-landscape.jpg" alt="Denmark landscape" />
   </div>
 </section>
 

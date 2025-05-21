@@ -22,7 +22,4 @@
 </main>
 
 <style>
-  main {
-    
-  }
 </style>

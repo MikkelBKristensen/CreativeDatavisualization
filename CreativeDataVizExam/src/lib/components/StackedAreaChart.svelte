@@ -1,8 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { renderStackedAreaChart } from "$lib/utils/stackedAreaChart.js";
+  import { base } from "$app/paths";
 
-  export let csvUrl = "/data/dataENG.csv";
+  export let csvUrl = `${base}/data/dataENG.csv`;
   export let width = 1200;
   export let height = 600;
 

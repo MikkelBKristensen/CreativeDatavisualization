@@ -1,9 +1,10 @@
 <script>
   import { onMount } from "svelte";
   import { renderComparedLineChart } from "$lib/utils/comparedLineChart.js";
+  import { base } from "$app/paths";
 
-  export let csvUrl1 = "/data/KF24Total.csv";
-  export let csvUrl2 = "/data/dataENG.csv";
+  export let csvUrl1 = `${base}/data/KF24Total.csv`;
+  export let csvUrl2 = `${base}/data/dataENG.csv`;
   export let width = 1500;
   export let height = 600;
 

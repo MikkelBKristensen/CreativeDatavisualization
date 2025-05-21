@@ -1,10 +1,10 @@
 <script>
-  // Add logic or props if needed
+  import { base } from '$app/paths';
 </script>
 
 <section class="hero">
   <video class="hero-bg" autoplay muted loop playsinline poster="">
-    <source src="videos/smoke-stack.mp4" type="video/mp4" />
+    <source src="{base}/videos/smoke-stack.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
   <div class="hero-gradient"></div>

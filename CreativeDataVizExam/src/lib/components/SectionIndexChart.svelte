@@ -1,13 +1,14 @@
 <script>
   import { onMount } from "svelte";
   import { renderIndexChart } from "$lib/utils/indexChart.js";
+  import { base } from "$app/paths";
 
   let chartContainer;
 
   onMount(() => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    renderIndexChart(chartContainer, "/data/dataENG.csv", height, width);
+    renderIndexChart(chartContainer, `${base}/data/dataENG.csv`, height, width);
   });
 </script>
 

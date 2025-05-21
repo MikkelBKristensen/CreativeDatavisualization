@@ -1,8 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { renderEmissionPieChart } from "$lib/utils/emissionPieChart.js";
+  import { base } from "$app/paths";
 
-  export let csvUrl = "/data/dataENG.csv";
+  export let csvUrl = `${base}/data/dataENG.csv`;
   export let width = 600;
   export let height = width;
   export let year = 1990; // Optional: pass a year to filter
