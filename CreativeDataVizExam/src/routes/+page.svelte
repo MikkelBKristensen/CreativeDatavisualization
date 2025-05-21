@@ -77,53 +77,53 @@
   }
   .bg-svg {
     position: absolute;
-    width: auto; /* Adjust as needed */
+    width: auto;
     height: auto;
   }
   .lines1 {
     top: 6vh;
     left: 15vw;
-    height: 45vw; /* Adjust as needed */
+    height: 45vw;
     width: auto;
   }
   .lines2 {
     top: 112vh;
     left: 68vw;
-    height: 1400px; /* Adjust as needed */
+    height: 1400px;
     width: auto;
     opacity: 0.3;
   }
   .lines3 {
     top: 270vh;
     left: 2vw;
-    height: 73vw; /* Adjust as needed */
+    height: 73vw;
     width: auto;
     opacity: 0.2;
   }
   .flower1 {
     top: 86vh;
     left: 3vw;
-    height: 175px; /* Adjust as needed */
+    height: 175px;
   }
   .flower2 {
     top: 96vh;
     left: 12vw;
-    height: 150px; /* Adjust as needed */
+    height: 150px;
   }
   .flower3 {
     top: 91vh;
     left: 88vw;
-    height: 150px; /* Adjust as needed */
+    height: 150px;
   }
   .flower4 {
     top: 195vh;
     left: 88vw;
-    height: 100px; /* Adjust as needed */
+    height: 100px;
   }
   .flower5 {
     top: 195vh;
     left: 3vw;
-    height: 200px; /* Adjust as needed */
+    height: 200px;
   }
   main {
     position: relative;
