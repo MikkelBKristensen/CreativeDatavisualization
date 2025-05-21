@@ -80,6 +80,7 @@
     border-radius: 1rem;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     object-fit: cover;
+    z-index: 1;
   }
   @media (max-width: 900px) {
     .intro {

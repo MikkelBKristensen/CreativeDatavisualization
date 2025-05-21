@@ -10,8 +10,6 @@ body, html {
 section {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 2rem;
   scroll-behavior: smooth;
   scroll-snap-align: start; /* optional */
@@ -34,7 +32,20 @@ main::-webkit-scrollbar {
   flex-wrap: wrap;
   gap: 2rem;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between; /* Changed from center to space-between */
+  width: 100%;
+}
+
+.viz-flex-container .viz-text {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 500px; /* Optional: limit text width */
+  box-sizing: border-box;
+}
+
+.viz-flex-container .viz-chart {
+  flex: 0 0 auto;
+  margin-left: auto; /* Pushes chart to the far right */
 }
 
 /* Text on left, viz on right */

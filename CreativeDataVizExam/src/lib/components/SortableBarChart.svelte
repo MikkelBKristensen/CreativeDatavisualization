@@ -4,8 +4,8 @@
   import { base } from "$app/paths";
 
   export let csvUrl = `${base}/data/dataENG.csv`;
-  export let width = 1000;
-  export let height = 700;
+  export let width = 1400;
+  export let height = 800;
 
   let chartContainer;
 
@@ -23,7 +23,7 @@
         Click the chart to toggle between descending and ascending order.
       </p>
     </div>
-    <div class="viz-chart">
+    <div class="viz-chart" style="z-index: 1">
       <div bind:this={chartContainer}></div>
     </div>
   </div>

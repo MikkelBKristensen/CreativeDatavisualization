@@ -48,7 +48,7 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
   values.sort((a, b) => d3.descending(a[1], b[1]));
 
   // SVG setup
-  const margin = { top: 60, right: 40, bottom: 100, left: 220 };
+  const margin = { top: 60, right: 60, bottom: 100, left: 350 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -61,8 +61,11 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
   const controls = document.createElement("div");
   controls.style.display = "flex";
   controls.style.alignItems = "center";
-  controls.style.gap = "0.5rem";
-  controls.style.marginBottom = "1rem";
+  // controls.style.gap = "0.5rem";
+  // controls.style.marginBottom = "1rem";
+  controls.style.justifyContent = "start"; // Move to the right
+  controls.style.marginLeft = "268px"; // Add left margin
+  controls.style.width = "100%"; // Take full width of container
   controls.innerHTML = `
     <label for="sort-select" style="
       font-weight:500;
@@ -122,7 +125,7 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
     .attr("x", d => x(d[1]) + 5)
     .attr("y", d => y(d[0]) + y.bandwidth() / 2)
     .attr("dy", "0.35em")
-    .style("font-size", "13px")
+    .style("font-size", "15px")
     .attr("fill", "#fff") // Make labels white
     .text(d => d[1]);
 
@@ -131,7 +134,8 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
     .call(d3.axisLeft(y))
     .call(g => g.selectAll("text").attr("fill", "#fff")) // Make y axis text white
     .call(g => g.selectAll("line").attr("stroke", "#fff")) // Make y axis ticks white
-    .call(g => g.selectAll("path").attr("stroke", "#fff")); // Make y axis path white
+    .call(g => g.selectAll("path").attr("stroke", "#fff")) // Make y axis path white
+    .call(g => g.selectAll("text").attr("font-size", "1rem")); // Make y axis text larger
 
   // X Axis (values)
   g.append("g")

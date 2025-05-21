@@ -13,7 +13,7 @@
 </script>
 
 <section class="section">
-  <div class="viz-flex-container">
+  <div class="viz-flex-container vertical">
     <div class="viz-text">
       <!-- The text is just placeholder text -->
       <h2>Denmark's CO₂ Emissions Over Time</h2>

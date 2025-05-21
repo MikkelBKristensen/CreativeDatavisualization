@@ -15,7 +15,7 @@
 </script>
 
 <section class="section">
-  <div class="viz-flex-container vertical">
+  <div class="viz-flex-container">
     <div class="viz-text">
       <h2>CO₂ Emissions by Brancher (Interactive Year)</h2>
       <p>
