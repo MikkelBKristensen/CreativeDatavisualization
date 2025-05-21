@@ -7,6 +7,7 @@
   import PieChart from "$lib/components/PieChart.svelte";
   import StackedAreaChart from "$lib/components/StackedAreaChart.svelte";
   import FullBarChart from "$lib/components/FullBarChart.svelte";
+  import CompareDataChart from "$lib/components/CompareDataChart.svelte";
 </script>
 
 <main>
@@ -17,6 +18,7 @@
   <SectionIndexChart />
   <StackedAreaChart />
   <FullBarChart />
+  <CompareDataChart />
 </main>
 
 <style>

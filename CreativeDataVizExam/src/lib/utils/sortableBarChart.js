@@ -48,7 +48,7 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
   values.sort((a, b) => d3.descending(a[1], b[1]));
 
   // SVG setup
-  const margin = { top: 60, right: 40, bottom: 40, left: 220 };
+  const margin = { top: 60, right: 40, bottom: 100, left: 220 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -133,6 +133,18 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
   g.append("g")
     .attr("transform", `translate(0,${innerHeight})`)
     .call(d3.axisBottom(x));
+
+  // X-axis label
+  g.append("text")
+    .attr("x", innerWidth / 2)
+    .attr("y", innerHeight + 45)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#333")
+    .attr("font-weight", "bold")
+    .attr("font-size", "15px")
+    .attr("font-family", "sans-serif")
+    .attr("opacity", 0.5)
+    .text("Thousand tonnes CO₂e");
 
   // Sorting logic
   function update(sortType) {
