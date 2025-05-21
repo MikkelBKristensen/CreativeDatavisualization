@@ -1,38 +1,68 @@
-# sv
+# Creative Data Visualization Exam
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Welcome to the **Creative Data Visualization Exam** project!  
+This project explores creative and interactive data visualizations using [SvelteKit](https://kit.svelte.dev/) and [D3.js](https://d3js.org/).
 
-## Creating a project
+## 🚀 Getting Started
 
-If you're seeing this, you've probably already done this step. Congrats!
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-```bash
-# create a new project in the current directory
-npx sv create
+2. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+   The app will be available at [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal).
 
-# create a new project in my-app
-npx sv create my-app
-```
+3. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
-## Developing
+4. **Preview the production build:**
+   ```bash
+   npm run preview
+   ```
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## 📁 Project Structure
 
-```bash
-npm run dev
+- `src/` — Main SvelteKit source files and components
+- `static/` — Static assets (images, data, etc.)
+- `build/` — Production build output
+- `.svelte-kit/` — SvelteKit build cache (ignored in git)
+- `package.json` — Project scripts and dependencies
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## 🛠️ Technologies Used
 
-## Building
+- [SvelteKit](https://kit.svelte.dev/) — Modern web framework for building fast, interactive apps
+- [D3.js](https://d3js.org/) — Powerful library for data-driven visualizations
+- [Vite](https://vitejs.dev/) — Lightning-fast build tool
 
-To create a production version of your app:
+## 📦 Scripts
 
-```bash
-npm run build
-```
+| Command         | Description                       |
+|-----------------|-----------------------------------|
+| `npm run dev`   | Start development server          |
+| `npm run build` | Build for production              |
+| `npm run preview` | Preview production build        |
+| `npm run deploy` | Deploy to GitHub Pages           |
 
-You can preview the production build with `npm run preview`.
+## 🖼️ Example Visualizations
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+This project includes a variety of creative data visualizations, such as:
+
+- Interactive charts and graphs
+- Animated data stories
+- Custom D3.js visualizations
+
+Explore the source code in the [`src/`](src) directory to see how each visualization is built.
+
+## 📄 License
+
+This project is for educational purposes.
+
+---
+
+Made with ❤️ for the Creative Data Visualization course.

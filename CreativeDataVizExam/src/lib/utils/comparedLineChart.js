@@ -57,7 +57,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
   });
 
   // SVG and margins
-  const margin = { top: 40, right: 260, bottom: 60, left: 80 };
+  const margin = { top: 40, right: 270, bottom: 60, left: 80 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -110,7 +110,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
     const legendData = [
       { label: "Emission from danish economy", color: "#FF4136" },
       { label: "Emission in Denmark", color: "#0074D9" },
-      { label: "Climate Law Goal (23,502)", color: "#2ECC40" }
+      { label: "Climate Law Goal (23,502 kt CO₂e)", color: "#2ECC40" }
     ];
     const legendBoxHeight = legendData.length * 28;
     const legendY = margin.top + (innerHeight - legendBoxHeight) / 2;
