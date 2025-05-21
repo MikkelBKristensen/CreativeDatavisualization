@@ -61,11 +61,9 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
   const controls = document.createElement("div");
   controls.style.display = "flex";
   controls.style.alignItems = "center";
-  // controls.style.gap = "0.5rem";
-  // controls.style.marginBottom = "1rem";
-  controls.style.justifyContent = "start"; // Move to the right
-  controls.style.marginLeft = "268px"; // Add left margin
-  controls.style.width = "100%"; // Take full width of container
+  controls.style.justifyContent = "start";
+  controls.style.marginLeft = "268px";
+  controls.style.width = "100%";
   controls.innerHTML = `
     <label for="sort-select" style="
       font-weight:500;
@@ -126,31 +124,31 @@ export async function renderSortableBarChart(container, csvUrl, width, height) {
     .attr("y", d => y(d[0]) + y.bandwidth() / 2)
     .attr("dy", "0.35em")
     .style("font-size", "15px")
-    .attr("fill", "#fff") // Make labels white
+    .attr("fill", "#fff")
     .text(d => d[1]);
 
   // Y Axis (brancher names)
   const yAxis = g.append("g")
     .call(d3.axisLeft(y))
-    .call(g => g.selectAll("text").attr("fill", "#fff")) // Make y axis text white
-    .call(g => g.selectAll("line").attr("stroke", "#fff")) // Make y axis ticks white
-    .call(g => g.selectAll("path").attr("stroke", "#fff")) // Make y axis path white
-    .call(g => g.selectAll("text").attr("font-size", "1rem")); // Make y axis text larger
+    .call(g => g.selectAll("text").attr("fill", "#fff"))
+    .call(g => g.selectAll("line").attr("stroke", "#fff"))
+    .call(g => g.selectAll("path").attr("stroke", "#fff"))
+    .call(g => g.selectAll("text").attr("font-size", "1rem"));
 
   // X Axis (values)
   g.append("g")
     .attr("transform", `translate(0,${innerHeight})`)
     .call(d3.axisBottom(x))
-    .call(g => g.selectAll("text").attr("fill", "#fff")) // Make x axis text white
-    .call(g => g.selectAll("line").attr("stroke", "#fff")) // Make x axis ticks white
-    .call(g => g.selectAll("path").attr("stroke", "#fff")); // Make x axis path white
+    .call(g => g.selectAll("text").attr("fill", "#fff"))
+    .call(g => g.selectAll("line").attr("stroke", "#fff"))
+    .call(g => g.selectAll("path").attr("stroke", "#fff"));
 
   // X-axis label
   g.append("text")
     .attr("x", innerWidth / 2)
     .attr("y", innerHeight + 45)
     .attr("text-anchor", "middle")
-    .attr("fill", "#fff") // Make axis label white
+    .attr("fill", "#fff")
     .attr("font-weight", "bold")
     .attr("font-size", "15px")
     .attr("font-family", "sans-serif")

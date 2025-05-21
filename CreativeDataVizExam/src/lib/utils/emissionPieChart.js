@@ -71,7 +71,6 @@ export async function renderEmissionPieChart(
 
   // SVG and key container setup
   const radius = Math.min(width, height) / 2;
-  // Create a flex container for chart and key
   const wrapper = document.createElement("div");
   wrapper.style.display = "flex";
   wrapper.style.alignItems = "center";

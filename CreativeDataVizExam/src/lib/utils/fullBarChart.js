@@ -134,8 +134,7 @@ export async function renderFullBarChart(container, csvUrl, width, height) {
     .attr("y", -margin.left + 15)
     .attr("x", -innerHeight / 2)
     .attr("text-anchor", "middle")
-    .attr("fill", "#fff") // Make y-axis label white
-    // .attr("font-weight", "bold")
+    .attr("fill", "#fff")
     .attr("font-size", "15px")
     .attr("font-family", "sans-serif")
     .attr("opacity", 0.8)
@@ -154,8 +153,6 @@ export async function renderFullBarChart(container, csvUrl, width, height) {
       d => d.Brancher
     );
     const valueMap = new Map(values);
-
-    // y.domain([0, maxValue * 1.08]); // REMOVE this dynamic domain
 
     // Bars
     const bars = g.selectAll("rect")
@@ -196,7 +193,7 @@ export async function renderFullBarChart(container, csvUrl, width, height) {
         .attr("y", d => y(valueMap.get(d) || 0) - 6)
         .attr("text-anchor", "middle")
         .style("font-size", "12px")
-        .style("fill", "#fff") // Make value labels white
+        .style("fill", "#fff")
         .text(d => valueMap.get(d) || 0)
         .style("opacity", 0)
         .transition().duration(500)

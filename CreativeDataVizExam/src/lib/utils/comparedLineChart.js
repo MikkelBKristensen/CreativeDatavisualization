@@ -15,7 +15,6 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
   if (!btn) {
     btn = document.createElement("button");
     btn.id = "toggle-extra-years";
-    // --- Style the button like in fullBarChart.js ---
     btn.style.padding = "0.4em 1em";
     btn.style.borderRadius = "6px";
     btn.style.border = "1px solid #b0b0b0";
@@ -23,7 +22,6 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
     btn.style.fontSize = "1rem";
     btn.style.cursor = "pointer";
     btn.style.marginBottom = "1em";
-    // -----------------------------------------------
     container.parentNode.insertBefore(btn, container);
   }
   btn.textContent = includeExtraYears
@@ -87,7 +85,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
       .attr("y", -margin.left + 20)
       .attr("x", -innerHeight / 2)
       .attr("text-anchor", "middle")
-      .attr("fill", "#fff") // Make y-axis label white
+      .attr("fill", "#fff")
       .attr("font-weight", "bold")
       .attr("font-size", "15px")
       .attr("font-family", "sans-serif")
@@ -133,7 +131,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
         .text(item.label)
         .style("font-size", "15px")
         .attr("alignment-baseline", "middle")
-        .attr("fill", "#fff"); // Make legend text white
+        .attr("fill", "#fff");
     });
 
     // Tooltip setup
@@ -185,7 +183,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
     .call(
       d3.axisBottom(x)
         .tickFormat(d3.format("d"))
-        .tickValues(years.map(Number)) // Show all years as ticks
+        .tickValues(years.map(Number))
     )
     .selectAll("text")
     .attr("transform", "rotate(-30)")
@@ -241,7 +239,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
 
   g.append("text")
     .attr("class", "climate-goal-label")
-    .attr("x", innerWidth - 180) // moved further left
+    .attr("x", innerWidth - 180)
     .attr("y", yGoal - 8)
     .attr("text-anchor", "end")
     .attr("fill", "#2ECC40")

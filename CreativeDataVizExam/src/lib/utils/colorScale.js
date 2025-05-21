@@ -1,6 +1,5 @@
 import * as d3 from "d3";
 
-// Only include branchers that are shown individually (not grouped as "Other")
 export const brancherDomain = [
   "Agriculture, forestry, and fishing",
   "Industry",
@@ -17,7 +16,7 @@ const brancherPalette = [
   "#f9a24e", // Utility services (yellow/orange)
   "#E57373", // Trade and transport, etc. (red)
   "#FFD54F", // Households (warm yellow)
-  "#B0BEC5"  // Other (neutral gray)½
+  "#B0BEC5"  // Other (neutral gray)
 ];
 
 // Shared color scale for all charts

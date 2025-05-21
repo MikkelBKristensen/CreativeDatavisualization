@@ -20,7 +20,6 @@ export async function renderIndexChart(
   const marginLeft = 80;
 
   // Load your CSV data
-  // Use d3.utcParse for correct year parsing
   const parseYear = d3.utcParse("%Y");
   var data = await d3.csv(csvUrl, d3.autoType);
 
@@ -31,7 +30,7 @@ export async function renderIndexChart(
   // Group by "Brancher" (sector), and parse years
   const stocks = groupedData.map((d) => ({
     Symbol: d.Brancher,
-    Date: parseYear(d.Year), // <-- FIXED: use utcParse for correct alignment
+    Date: parseYear(d.Year),
     Close: +d.Value,
   }));
 
@@ -110,7 +109,7 @@ export async function renderIndexChart(
     .append("line")
     .attr("y1", heightParam)
     .attr("y2", 0)
-    .attr("stroke", "#fff"); // Make the vertical line white
+    .attr("stroke", "#fff");
 
   // Create a line and a label for each series.
   const serie = svg
