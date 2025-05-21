@@ -14,11 +14,11 @@
 </script>
 
 <section class="section">
-  <div class="viz-flex-container vertical">
+  <div class="viz-flex-container left">
     <div class="viz-text">
-      <h2>Sortable Bar Chart of CO₂ Emissions by Brancher (1990)</h2>
+      <h2>Sortable Bar Chart of CO₂ Emissions by Sectors (1990)</h2>
       <p>
-        This bar chart shows the CO₂ emissions for each brancher in 1990.
+        This bar chart shows the CO₂ emissions for each sector in 1990.
         Click the chart to toggle between descending and ascending order.
       </p>
     </div>
