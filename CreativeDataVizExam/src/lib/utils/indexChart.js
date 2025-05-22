@@ -89,7 +89,8 @@ export async function renderIndexChart(
         .ticks(widthParam / 80)
         .tickSizeOuter(0)
     )
-    .call((g) => g.select(".domain").remove());
+    .call((g) => g.select(".domain").remove())
+    .style("font-size", "14px");
 
   svg
     .append("g")
@@ -102,7 +103,8 @@ export async function renderIndexChart(
         .attr("stroke-opacity", (d) => (d === 1 ? null : 0.2))
         .attr("x2", widthParam - marginLeft - marginRight)
     )
-    .call((g) => g.select(".domain").remove());
+    .call((g) => g.select(".domain").remove())
+    .style("font-size", "14px");
 
   const rule = svg
     .append("g")

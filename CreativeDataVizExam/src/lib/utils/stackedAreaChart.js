@@ -59,7 +59,7 @@ export async function renderStackedAreaChart(container, csvUrl, width, height) {
   const series = stack(stackedData);
 
   // Scales
-  const margin = { top: 40, right: 160, bottom: 40, left: 100 };
+  const margin = { top: 40, right: 240, bottom: 40, left: 100 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
