@@ -16,18 +16,19 @@
 
 <section class="section">
   <div class="viz-flex-container left">
-    <div class="viz-text">
-      <h1>Let's take a look at...</h1>
-      <h2>CO₂ Emissions by Sectors 1990</h2>
+    <div class="viz-text" style="margin: 3rem;">
+      <h1>CO₂ Emissions by Sector: 1990</h1>
+      <h2>Who were Denmark's biggest emitters?</h2>
       <p>
-        This bar chart shows the CO₂ emissions for each sector in 1990.<br>
-        <em>Click the drop down menu to toggle between orders.</em>
+        This bar chart shows the CO₂ emissions for each sector in 1990.
+        <br>
+        <em>Use the drop-down menu to sort the data and reveal different perspectives.</em>
       </p>
       <p>
-        <em>Who's the biggest source of emissions at the time?</em>
+        <strong>Which sector stands out as the largest source of emissions?</strong> Explore the chart to see how energy, transport, agriculture, and other sectors compare.
       </p>
       <p>
-        In the Climate Act there should be a <strong>70% reduction of emissions in 2030 compared to 1990</strong>.
+        <em>Did you know?</em> The Danish Climate Act aims for a <strong>70% reduction in emissions by 2030 compared to 1990</strong>. Understanding the starting point is key to tracking progress.
       </p>
     </div>
     <div class="viz-chart" style="z-index: 1">
@@ -40,18 +41,18 @@
 .viz-text {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* More space between paragraphs */
+  gap: 1.5rem;
   padding: 2rem 2rem 2rem 0;
 }
 
 .viz-text h1 {
-  font-size: 3rem; /* Bigger H1 */
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   line-height: 1.1;
 }
 
 .viz-text h2 {
-  font-size: 2rem; /* Bigger H2 */
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   line-height: 1.2;
 }

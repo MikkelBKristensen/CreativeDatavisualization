@@ -13,22 +13,77 @@
 </script>
 
 <section class="section">
-  <div class="viz-flex-container vertical">
-    <div class="viz-text">
-      <!-- The text is just placeholder text -->
-      <h2>Denmark's CO₂ Emissions Over Time</h2>
+  <div
+    class="viz-flex-container vertical"
+    style="flex-direction: column; align-items: center;"
+  >
+    <div class="viz-text" style="max-width: 1600px; width: 100%; margin: 2.5rem 0 2rem 0;">
+      <h2 class="big-headline">
+        Denmark's CO₂ Emissions Index: Year-by-Year Perspective
+      </h2>
       <p>
-        This chart shows the total CO₂ emissions in Denmark from 1990 to 2021.
-        The data is sourced from the Danish Energy Agency and is presented in
-        million tonnes of CO₂.
-      </p>
-      <p>
-        The chart allows you to explore the changes in emissions over time, with
-        a focus on the years 1990 to 2021.
+        This index chart lets you explore Denmark's CO₂ emissions from the
+        perspective of each year, revealing how the journey has unfolded and
+        changed over time.
       </p>
     </div>
-    <div class="viz-chart">
+    <div class="viz-chart" style="display: flex; justify-content: center;">
       <div bind:this={chartContainer}></div>
     </div>
   </div>
 </section>
+
+<style>
+  .big-headline {
+    font-size: 2.3rem;
+    margin-top: 0; /* Remove margin above the headline */
+    margin-bottom: 1.2rem;
+    line-height: 1.1;
+  }
+  .viz-flex-container.vertical {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .viz-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 1000px;
+    margin: 2.5rem 0 2rem 0;
+  }
+  .viz-text p {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.7;
+  }
+  .viz-text p + p {
+    margin-top: -0.5rem;
+  }
+  .viz-chart {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .viz-flex-container.vertical {
+      max-width: 100vw;
+      padding: 0 0.5rem;
+    }
+    .viz-text {
+      max-width: 100vw;
+      margin: 1.5rem 0 1rem 0;
+      padding: 0 0.5rem;
+    }
+    .viz-chart {
+      width: 100vw;
+      min-width: unset;
+    }
+  }
+</style>

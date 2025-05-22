@@ -14,7 +14,7 @@ export async function renderIndexChart(
 
   const width = widthParam;
   const height = heightParam;
-  const marginTop = 200;
+  const marginTop = 0;
   const marginRight = 200;
   const marginBottom = 200;
   const marginLeft = 80;

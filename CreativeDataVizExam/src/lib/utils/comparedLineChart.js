@@ -219,6 +219,27 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
     .attr("stroke-width", 2.5)
     .attr("d", lineGen);
 
+  // --- QUESTION MARK FOR PREDICTION ---
+  // Remove previous question mark if present
+  g.selectAll(".prediction-questionmark").remove();
+
+  if (includeExtraYears) {
+    // Find the last year in line2 with a value (the prediction)
+    const lastPred = [...line2].reverse().find(d => d.value !== null);
+    if (lastPred) {
+      g.append("text")
+        .attr("class", "prediction-questionmark")
+        .attr("x", x(lastPred.year) + 10)
+        .attr("y", y(lastPred.value) - 10)
+        .attr("fill", "#FF4136")
+        .attr("font-size", "2.2rem")
+        .attr("font-weight", "bold")
+        .attr("text-anchor", "start")
+        .attr("alignment-baseline", "middle")
+        .text("?");
+    }
+  }
+
   // --- CLIMATE LAW GOAL LINE ---
   // Remove previous goal line/label if present
   g.selectAll(".climate-goal-line").remove();

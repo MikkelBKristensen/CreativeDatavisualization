@@ -20,20 +20,20 @@
   .intro {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;      /* Align content to the top/left */
-    justify-content: flex-start;  /* Align content to the left */
+    align-items: center;           /* Center content vertically */
+    justify-content: center;       /* Center container horizontally on page */
     gap: 3rem;
     padding: 4rem 2rem;
     min-height: 60vh;
-    max-width: 900px;             /* Make the section a bit wider */
-    margin: 0 auto;               /* Center the section horizontally in the viewport */
+    max-width: 900px;
+    margin: 0 auto;
   }
   .intro-content {
     flex: 1 1 350px;
-    max-width: 800px;             /* Make the content a bit wider */
+    max-width: 800px;
     width: 100%;
     margin: 0;
-    text-align: left;             /* Align text to the left */
+    text-align: left;              /* Left align text inside container */
   }
   .intro-content h1 {
     font-size: 3.5rem;
