@@ -8,7 +8,7 @@
     <p class="intro-text">
       It all started with the first environmental United Nations' (UN) conference that was held in Stockholm (1972). 
       Here the first declaration of humans' responsibilities for the environment was stated. 
-      Since, many conferences* and agreements has taken place towards spreading awareness for nature and humans' impact on it:
+      Since then, many conferences<sup>*</sup> and agreements have taken place towards spreading awareness for nature and humans' impact on it:
     </p>
     <ul>
       <li><strong>1992 Rio de Janeiro</strong> - <em>The UN Conference on Environment and Development</em> 
@@ -24,6 +24,9 @@
         <span class="resulting-in">Resulting in: <strong>The Paris Agreement</strong></span>
       </li>
     </ul>
+    <p class="footnote">
+      <sup>*</sup><em>Many more conferences and agreements have occurred before, between, and after those mentioned above.</em>
+    </p>
   </div>
   <div class="intro-image">
     <img src="{base}/images/UnitedNationsPic.png" alt="" />

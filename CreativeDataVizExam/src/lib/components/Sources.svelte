@@ -9,15 +9,15 @@
     <ul>
       <li>
         <a
-          href="https://www.iea.org/countries/denmark"
+          href="https://www.statistikbanken.dk/DRIVHUS"
           target="_blank"
-          rel="noopener">International Energy Agency – Denmark</a>
+          rel="noopener">Link to emissions data from the Danish ecocnomy</a>
       </li>
       <li>
         <a
-          href="https://www.statbank.dk/statbank5a/default.asp?w=1920"
+          href="https://www.kefm.dk/klima/klimastatus-og-fremskrivning/klimastatus-og-fremskrivning-2024"
           target="_blank"
-          rel="noopener">Statistics Denmark</a>
+          rel="noopener">Link to emissions data from within Danish borders</a>
       </li>
       <!-- Add more sources here as <li> elements -->
     </ul>

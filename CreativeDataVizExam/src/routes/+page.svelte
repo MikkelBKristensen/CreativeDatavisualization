@@ -34,6 +34,16 @@
       alt="Lines 3"
     />
     <img
+      src="{base}/svgelements/lines/4grå.svg"
+      class="bg-svg lines4"
+      alt="Lines 4"
+    />
+    <img
+      src="{base}/svgelements/lines/5grå.svg"
+      class="bg-svg lines5"
+      alt="Lines 5"
+    />
+    <img
       src="{base}/svgelements/blomster/1.svg"
       class="bg-svg flower1"
       alt="Flower 1"
@@ -57,6 +67,51 @@
       src="{base}/svgelements/blomster/5.svg"
       class="bg-svg flower5"
       alt="Flower 5"
+    />
+    <img
+      src="{base}/svgelements/blomster/6.svg"
+      class="bg-svg flower6"
+      alt="Flower 6"
+    />
+    <img
+      src="{base}/svgelements/blomster/7.svg"
+      class="bg-svg flower7"
+      alt="Flower 7"
+    />
+    <img
+      src="{base}/svgelements/blomster/8.svg"
+      class="bg-svg flower8"
+      alt="Flower 8"
+    />
+    <img
+      src="{base}/svgelements/blomster/9.svg"
+      class="bg-svg flower9"
+      alt="Flower 9"
+    />
+    <img
+      src="{base}/svgelements/blomster/10.svg"
+      class="bg-svg flower10"
+      alt="Flower 10"
+    />
+    <img
+      src="{base}/svgelements/blomster/11.svg"
+      class="bg-svg flower11"
+      alt="Flower 11"
+    />
+    <img
+      src="{base}/svgelements/snurrer/1.svg"
+      class="bg-svg swurl1"
+      alt="Swurl 1"
+    />
+    <img
+      src="{base}/svgelements/snurrer/2.svg"
+      class="bg-svg swurl2"
+      alt="Swurl 2"
+    />
+    <img
+      src="{base}/svgelements/snurrer/3.svg"
+      class="bg-svg swurl3"
+      alt="Swurl 3"
     />
   </div>
   <SectionIntro />
@@ -87,6 +142,22 @@
     position: absolute;
     width: auto;
     height: auto;
+    z-index: -1;
+  }
+  .swurl1 {
+    top: 962vh;
+    left: 86vw;
+    height: 220px;
+  }
+  .swurl2 {
+    top: 999vh;
+    left: 4vw;
+    height: 230px;
+  }
+  .swurl3 {
+    top: 1048vh;
+    left: 82vw;
+    height: 190px;
   }
   .lines1 {
     top: 6vh;
@@ -95,18 +166,36 @@
     width: auto;
   }
   .lines2 {
-    top: 112vh;
-    left: 68vw;
-    height: 1400px;
+    top: 180vh;
+    left: 2vw;
+    height: 1600px;
     width: auto;
-    opacity: 0.3;
+    opacity: 0.1;
+    transform: scaleX(-1);
   }
   .lines3 {
-    top: 261vh;
+    top: 365vh;
     left: 2vw;
     height: 73vw;
     width: auto;
-    opacity: 0.08;
+    opacity: 0.05;
+  }
+  .lines4 {
+    top: 485vh;
+    left: 2vw;
+    height: 73vw;
+    width: auto;
+    opacity: 0.3;
+    transform: scale(-1, -1);
+    z-index: -1;
+  }
+  .lines5 {
+    top: 722vh;
+    left: 2vw;
+    height: 73vw;
+    width: auto;
+    opacity: 0.3;
+    z-index: -1;
   }
   .flower1 {
     top: 86vh;
@@ -132,6 +221,36 @@
     top: 195vh;
     left: 3vw;
     height: 200px;
+  }
+  .flower6 {
+    top: 208vh;
+    left: 83vw;
+    height: 250px;
+  }
+  .flower7 {
+    top: 230vh;
+    left: 18vw;
+    height: 130px;
+  }
+  .flower8 {
+    top: 390vh;
+    left: 10vw;
+    height: 200px;
+  }
+  .flower9 {
+    top: 370vh;
+    left: 4vw;
+    height: 150px;
+  }
+  .flower10 {
+    top: 275vh;
+    left: 85vw;
+    height: 200px;
+  }
+  .flower11 {
+    top: 382vh;
+    left: 84vw;
+    height: 150px;
   }
   main {
     position: relative;

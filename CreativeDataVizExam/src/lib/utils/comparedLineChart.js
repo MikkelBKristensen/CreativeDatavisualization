@@ -108,7 +108,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
 
     // Legend
     const legendData = [
-      { label: "Emission from danish economy", color: "#FF4136" },
+      { label: "Emission from Danish economy", color: "#FF4136" },
       { label: "Emission in Denmark", color: "#0074D9" },
       { label: "Climate Law Goal (23,502 kt CO₂e)", color: "#2ECC40" }
     ];
@@ -305,7 +305,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
       tooltip.style.display = "block";
       tooltip.innerHTML = `
         <b>Year: ${closestYear}</b><br>
-        <span style="color:#FF4136;">Emission from danish economy:</span> ${v2 !== null ? v2.toLocaleString() : "N/A"}<br>
+        <span style="color:#FF4136;">Emission from Danish economy:</span> ${v2 !== null ? v2.toLocaleString() : "N/A"}<br>
         <span style="color:#0074D9;">Emission in Denmark:</span> ${v1 !== null ? v1.toLocaleString() : "N/A"}<br>
         ${diff !== null && percent !== null
           ? `<span style="color:#bbb;">Difference: ${(diff > 0 ? "+" : "") + diff.toLocaleString()} (${percent}%)</span>`

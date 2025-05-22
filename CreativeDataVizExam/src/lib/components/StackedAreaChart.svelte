@@ -14,9 +14,9 @@
   });
 </script>
 
-<section class="section" style="z-index: 2;">
+<section class="section">
   <div class="viz-flex-container left">
-    <div class="viz-text" style="margin: 0rem 3rem 1.5rem 3rem;">
+    <div class="viz-text" style="margin: 0rem 3rem 1.5rem 3rem; z-index: 1">
       <h2 class="area-headline">
         Emissions Over Time: <span class="highlight"
           >Denmark's Biggest Culprits</span

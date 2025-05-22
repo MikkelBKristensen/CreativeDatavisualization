@@ -18,7 +18,7 @@
   <div class="viz-flex-container" style="align-items: flex-start;">
     <div
       class="viz-text"
-      style="max-width: 900px; margin: 2.5rem 3rem 2rem 3rem;"
+      style="max-width: 900px; margin: 2.5rem 3rem 2rem 3rem; z-index: 1"
     >
       <h2 class="big-headline">
         CO₂ Emissions by Sector: <br /> Explore Year by Year

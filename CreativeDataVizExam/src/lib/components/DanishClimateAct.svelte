@@ -19,7 +19,7 @@
         <strong>Climate neutrality</strong> should be reached by <strong>2050</strong>
       </li>
        <li>
-        Working towards keeping global temperature rise <strong>below 1.5 degrees Celcius</strong>
+        Working towards keeping global temperature rise <strong>below 1.5 degrees Celcius*</strong>
         <br>
         <em class="resulting-in">*Is part of the Paris Agreement as well</em>
       </li>
@@ -75,7 +75,8 @@
   .resulting-in {
     display: inline-block;
     margin-left: 2rem;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    font-size: 1rem;
   }
   @media (max-width: 900px) {
     .intro {
