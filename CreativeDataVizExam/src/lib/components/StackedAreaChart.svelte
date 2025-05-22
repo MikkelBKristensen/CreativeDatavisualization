@@ -14,7 +14,7 @@
   });
 </script>
 
-<section class="section">
+<section class="section" style="z-index: 2;">
   <div class="viz-flex-container left">
     <div class="viz-text">
       <h2>Some text</h2>

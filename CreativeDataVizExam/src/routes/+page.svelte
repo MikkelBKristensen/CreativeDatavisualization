@@ -58,8 +58,8 @@
   <SectionIntro />
   <SortableBarChart />
   <PieChart />
-  <SectionIndexChart />
   <StackedAreaChart />
+  <SectionIndexChart />
   <FullBarChart />
   <CompareDataChart />
 </main>
@@ -98,7 +98,7 @@
     left: 2vw;
     height: 73vw;
     width: auto;
-    opacity: 0.2;
+    opacity: 0.08;
   }
   .flower1 {
     top: 86vh;

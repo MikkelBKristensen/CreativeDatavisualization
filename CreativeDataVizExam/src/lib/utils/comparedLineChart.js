@@ -57,7 +57,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
   });
 
   // SVG and margins
-  const margin = { top: 40, right: 270, bottom: 60, left: 80 };
+  const margin = { top: 40, right: 300, bottom: 60, left: 80 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -101,7 +101,7 @@ export async function renderComparedLineChart(container, csvUrl1, csvUrl2, width
       .attr("class", "hover-line")
       .attr("y1", 0)
       .attr("y2", innerHeight)
-      .attr("stroke", "#222")
+      .attr("stroke", "#fff")
       .attr("stroke-width", 1.5)
       .attr("stroke-dasharray", "5,3")
       .style("opacity", 0);
