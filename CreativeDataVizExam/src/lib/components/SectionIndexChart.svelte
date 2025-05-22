@@ -36,7 +36,7 @@
 <style>
   .big-headline {
     font-size: 2.3rem;
-    margin-top: 0; /* Remove margin above the headline */
+    margin-top: 0;
     margin-bottom: 1.2rem;
     line-height: 1.1;
   }
@@ -61,9 +61,6 @@
     font-size: 1.15rem;
     margin-bottom: 0.25rem;
     line-height: 1.7;
-  }
-  .viz-text p + p {
-    margin-top: -0.5rem;
   }
   .viz-chart {
     width: 100%;

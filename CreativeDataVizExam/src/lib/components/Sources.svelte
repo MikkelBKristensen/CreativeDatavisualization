@@ -34,17 +34,17 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    justify-content: center; /* Center content vertically */
-    height: 40vh;            /* Optional: set a fixed height for better vertical centering */
+    justify-content: center; 
+    height: 40vh;           
   }
   .sources-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center; /* Center content vertically within the div */
+    justify-content: center; 
     width: 100%;
     text-align: left;
-    margin-left: 30rem;       /* Reasonable left margin */
+    margin-left: 30rem;      
   }
   .sources-section h2 {
     margin-top: 0;

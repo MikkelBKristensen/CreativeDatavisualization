@@ -20,8 +20,8 @@
   .intro {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;           /* Center content vertically */
-    justify-content: center;       /* Center container horizontally on page */
+    align-items: center;          
+    justify-content: center;       
     gap: 3rem;
     padding: 4rem 2rem;
     min-height: 60vh;
@@ -33,7 +33,7 @@
     max-width: 800px;
     width: 100%;
     margin: 0;
-    text-align: left;              /* Left align text inside container */
+    text-align: left;           
   }
   .intro-content h1 {
     font-size: 3.5rem;
@@ -48,9 +48,6 @@
     .intro {
       flex-direction: column;
       padding: 2rem 1rem;
-    }
-    .intro-image img {
-      max-width: 90vw;
     }
   }
 </style>

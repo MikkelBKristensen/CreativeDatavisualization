@@ -26,7 +26,7 @@
     </ul>
   </div>
   <div class="intro-image">
-    <img src="{base}/images/denmark-landscape.jpg" alt="Denmark landscape" />
+    <img src="{base}/images/denmark-landscape.png" alt="Denmark landscape" />
   </div>
 </section>
 
@@ -65,12 +65,11 @@
     max-width: 500px;
     width: 100%;
     border-radius: 1rem;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
     object-fit: cover;
     z-index: 1;
   }
   ul li {
-    margin-bottom: 1.2rem; /* Add spacing between list items */
+    margin-bottom: 1.2rem;
     font-size: 1.5rem;
   }
   .resulting-in {

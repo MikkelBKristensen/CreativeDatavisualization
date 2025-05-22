@@ -66,9 +66,6 @@
     margin-bottom: 0.25rem;
     line-height: 1.7;
   }
-  .viz-text p + p {
-    margin-top: -0.5rem;
-  }
   .viz-chart {
     display: flex;
     align-items: center;

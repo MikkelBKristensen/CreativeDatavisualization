@@ -34,7 +34,7 @@
         Understanding which sectors are responsible for the largest shares of
         emissions is crucial for targeting effective climate policies and
         tracking progress over time. Use this chart to get a sense of where the
-        biggest challenges and opportunities for improvement—lie.
+        biggest challenges and opportunities for improvement lie.
       </p>
     </div>
     <div class="viz-chart ml-4">
@@ -57,7 +57,6 @@
     flex-direction: column;
     gap: 1.5rem;
     max-width: 800px;
-    /* Add margin to match DanishClimateAct.svelte */
     margin: 3rem;
   }
 
