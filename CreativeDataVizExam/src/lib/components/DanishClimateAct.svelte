@@ -1,27 +1,27 @@
 <script>
-  import { base } from '$app/paths';
+  import { base } from "$app/paths";
 </script>
 
 <section class="intro">
   <div class="intro-content">
-    <h1>Fighting Climate Change</h1>
+    <h1>The Danish Climate Act</h1>
     <p class="intro-text">
-      It all started with the first environmental United Nations' (UN) conference that was held in Stockholm (1972). 
-      Here the first declaration of humans' responsibilities for the environment was stated. 
-      Since, many conferences* and agreements has taken place towards spreading awareness for nature and humans' impact on it:
+      In 2019 the “Agreement on climate law” was reached that Denmark should
+      have a climate law. This law is known as the Climate Act and entered into
+      force in 2020.
     </p>
+    <p style="font-size: 1.8rem; margin-top: 5rem;"><strong>Key Points from the Climate Act</strong></p>
     <ul>
-      <li><strong>1992 Rio de Janeiro</strong> - <em>The UN Conference on Environment and Development</em> 
-        <br>
-        <span class="resulting-in">Resulting in: <strong>Agenda 21</strong></span>
+      <li>
+        <strong>70% reduction</strong> of greenhouse emissions by <strong>2030</strong> compared to 1990
       </li>
-      <li><strong>1997 Kyoto</strong> - <em>The UN Framework Convention on Climate Change</em>
-        <br>
-        <span class="resulting-in">Resulting in: <strong>The Kyoto Protocol</strong></span>
+       <li>
+        <strong>Climate neutrality</strong> should be reached by <strong>2050</strong>
       </li>
-      <li><strong>2015 Paris</strong> - <em>The UN Climate change Conference</em>
+       <li>
+        Working towards keeping global temperature rise <strong>below 1.5 degrees Celcius</strong>
         <br>
-        <span class="resulting-in">Resulting in: <strong>The Paris Agreement</strong></span>
+        <em class="resulting-in">*Is part of the Paris Agreement as well</em>
       </li>
     </ul>
   </div>
@@ -44,7 +44,6 @@
     flex: 1 1 350px;
     max-width: auto;
     margin: 3rem;
-    margin-top: 17vh;
   }
   .intro-content h1 {
     font-size: 3.5rem;
@@ -66,7 +65,7 @@
     max-width: 500px;
     width: 100%;
     border-radius: 1rem;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
     object-fit: cover;
     z-index: 1;
   }

@@ -2,12 +2,16 @@
   import { base } from "$app/paths";
   import SectionHero from "$lib/components/SectionHero.svelte";
   import SectionIntro from "$lib/components/SectionIntro.svelte";
+  import DanishClimateAct from "$lib/components/DanishClimateAct.svelte";
+  import DataStorySection from "$lib/components/DataStorySection.svelte";
   import SortableBarChart from "$lib/components/SortableBarChart.svelte";
   import SectionIndexChart from "$lib/components/SectionIndexChart.svelte";
   import PieChart from "$lib/components/PieChart.svelte";
   import StackedAreaChart from "$lib/components/StackedAreaChart.svelte";
   import FullBarChart from "$lib/components/FullBarChart.svelte";
   import CompareDataChart from "$lib/components/CompareDataChart.svelte";
+  import Conclusion from "$lib/components/Conclusion.svelte";
+  import Sources from "$lib/components/Sources.svelte";
 </script>
 
 <SectionHero />
@@ -56,13 +60,17 @@
     />
   </div>
   <SectionIntro />
+  <DanishClimateAct />
+  <DataStorySection />
   <SortableBarChart />
   <PieChart />
   <StackedAreaChart />
   <SectionIndexChart />
   <FullBarChart />
   <CompareDataChart />
+  <Conclusion />
 </main>
+<Sources />
 
 <style>
   .svg-bg {
@@ -94,7 +102,7 @@
     opacity: 0.3;
   }
   .lines3 {
-    top: 270vh;
+    top: 261vh;
     left: 2vw;
     height: 73vw;
     width: auto;
@@ -135,7 +143,7 @@
       #4e7651 19%,
       #060b06 72%,
       #040804 80%,
-      #0b150c 100%
+      #3f0909 100%
     );
     color: #fff;
   }
