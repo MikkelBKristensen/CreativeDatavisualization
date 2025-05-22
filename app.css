@@ -39,7 +39,7 @@ main::-webkit-scrollbar {
 .viz-flex-container .viz-text {
   flex: 1 1 0;
   min-width: 0;
-  max-width: 500px; /* Optional: limit text width */
+  /* max-width: 500px;  */
   box-sizing: border-box;
 }
 
